@@ -1,0 +1,217 @@
+*{
+    margin:0;
+    padding: 0;
+}
+
+
+#mainDiv{
+    width:90%; 
+    display: flex;
+    padding:4%;
+  
+   /* height:500px; */
+   margin: auto;
+}
+
+#freeSpace{
+    width:20%; 
+   
+}
+
+#imagesToFetch{
+    width:70%;
+    margin: auto;
+    justify-content:space-around;
+    /* height:500px; */
+}
+
+
+input{
+    width:95%;
+    height:2vw;
+    border-radius: 1vw;
+    margin-bottom: 1vw;
+    margin-top: 1vw;
+}
+
+.btnleft{
+    display: block;
+    margin: auto;
+    width:60%;
+    height:2vw;
+    border-radius: 1vw;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+
+#sort{
+    height:2vw;
+    cursor: pointer;
+}
+
+#sort:hover{
+    height:2vw;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
+
+#colorSelect{
+    height:2vw;
+    cursor: pointer;
+}
+
+#colorSelect:hover{
+    height:2vw;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
+.alreadyAddedButton {
+    width:20vw;
+    height:2.5vw;
+    margin-top: 2vw;
+    border-radius: 1vw;
+    background-color: white;
+    font-size: medium;
+    color: black;
+    pointer-events: none;
+}
+
+select{
+    display: block;
+    margin: auto;
+    width:60%;
+    border-radius: 1vw;
+    background-color: white;
+    color: black;
+    height:1.5vw;
+    margin-top: 1.5vw;;
+}
+
+/* #data-list-wrapper{
+    border: 2px solid red;
+} */
+
+#data-list-wrapper.smallCard{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+}
+
+#card-list{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap:1vw;
+    margin: auto;
+}
+
+#card-list  img {
+    width:15vw;
+    height:15vw;
+    display: block;
+    margin: auto;
+    width:100%
+}
+
+#card-list  p {
+    
+    margin: auto;
+}
+
+.smallCard{
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    border-top-left-radius: 2vw;
+    border-top-right-radius: 2vw;
+}
+
+.smallCard>img{
+    border-top-left-radius: 2vw;
+    border-top-right-radius: 2vw;
+}
+
+.smallCard:hover{
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    /* border-radius: 2vw; */
+    border-top-left-radius: 2vw;
+    border-top-right-radius: 2vw;
+} 
+
+.smallCard>img:hover{
+    border-top-left-radius: 2vw;
+    border-top-right-radius: 2vw;;
+}
+
+.paginationBtn{
+    margin-top: 2vw;
+    width:4vw;
+    height: 3vw;;
+    border-radius: 1vw;
+    background-color: white;
+    font-size: medium;
+    margin-left: 1vw;
+
+}
+
+.paginationBtn:hover{
+    
+    background-color: black;
+    color: white;
+    font-size: medium;
+
+}
+
+
+.btnCart{
+    width:20vw;
+    height:2.5vw;
+    margin-top: 2vw;
+    border-radius: 1vw;
+    background-color: white;
+    font-size: medium;
+
+}
+
+.btnCart:hover{
+    background-color: black;
+    color: white;
+    
+}
+
+.smallCard > :nth-child(2){
+    display: none;
+}
+
+.smallCard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btnleft:hover{
+    background-color: black;
+    color: white;
+}
+button {
+    cursor: pointer;
+}
+
+@media only screen and (min-width: 500px) and (max-width: 768px) {
+    #card-list{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        width:auto; 
+    }
+
+    
+}
+
+@media only screen and (min-width: 200px) and (max-width: 500px) {
+    #card-list{
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+        width:10vw;
+    }
+
+   
+}
