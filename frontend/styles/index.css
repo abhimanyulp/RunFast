@@ -1,17 +1,432 @@
 * {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+}
+/* ============================================================================== */
+#account {
+  border: none;
+}
+#selectors {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  justify-content: center;
+}
+/* ================================================================================== */
+#blackstrip {
+  background-color: black;
+  color: aliceblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-bottom: 2%;
+}
+#blackstrip > button {
+  width: 30px;
+  height: 20px;
+}
+#blackstrip > div {
+  display: flex;
+  width: 80%;
+  overflow-x: auto;
+}
+#blackstrip > div::-webkit-scrollbar {
+  height: 0px;
+  width: 0px;
+}
+#blackstrip > div > div {
+  min-width: 100%;
+  max-width: 100%;
+  border: 2px solid red;
+  text-align: center;
+  /* position: absolute; */
+}
+#blackstrip > div > div > img {
+  width: 100px;
+  height: 100px;
+}
+#left {
+  background-color: #000;
+}
+#right {
+  background-color: #000;
+}
+/* =========================================================================================================================================== */
+
+/* Slideshow container */
+
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+  height: max-content;
+  overflow: hidden;
+  object-fit: cover;
+}
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
 }
 
-main {
-    width: 100%;
-    height: 80vh;
-    background-color: whitesmoke;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 200px;
-    border: 10px solid red;
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 1s ease;
+}
+
+.active,
+.dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.6;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* =============================================================================================================================================== */
+#ShopbyCategory {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+#ShopbyCategoryh3 {
+  text-align: center;
+  padding: 3% 0% 0%;
+}
+#ShopbyCategory > div {
+  display: grid;
+  width: 80%;
+  grid-template-columns: repeat(4, 1fr);
+  margin: auto;
+  gap: 10px;
+  padding: 3%;
+}
+#ShopbyCategory a {
+  text-decoration: none;
+  color: black;
+}
+#ShopbyCategory > div > div > img {
+  width: 100%;
+}
+#ShopbyCategory > div > div {
+  text-align: center;
+  cursor: pointer;
+}
+
+/* ===================================================================== */
+#shopbybrandhead {
+  text-align: center;
+}
+#shopbybrand {
+  display: flex;
+  justify-content: center;
+  margin: 2%;
+  align-items: center;
+}
+#shopbybrand > div {
+  display: flex;
+  overflow-x: auto;
+  width: 75%;
+  margin: 1%;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+#shopbybrand > div::-webkit-scrollbar {
+  height: 0px;
+  width: 0px;
+}
+#shopbybrand > div > div {
+  margin-right: 10px;
+  margin-left: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#shopbybrand > div > div > img {
+  width: 100px;
+  object-fit: fill;
+  mix-blend-mode: normal;
+}
+.mybtn {
+  background-color: aliceblue;
+  font-weight: bolder;
+  width: 5%;
+  display: flex;
+  justify-content: center;
+  border-radius: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+#shopallbrands {
+  text-align: center;
+}
+
+#Toptrend {
+  display: flex;
+  justify-content: center;
+  margin: 1%;
+}
+#Toptrend > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  padding: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+#Toptrend > div > div {
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+#Toptrend > div > div > img {
+  width: 100%;
+}
+/* ================================================================================================ */
+#recomended {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2%;
+  margin: 2%;
+}
+#recomended > div:nth-child(1) {
+  display: flex;
+  justify-content: space-around;
+  width: 90%;
+  align-items: center;
+  text-align: center;
+}
+#box3 {
+  display: flex;
+  width: 80%;
+  overflow-x: auto;
+  margin: 1%;
+}
+#box3::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+#recomended > div > div {
+  min-width: 20%;
+  max-width: 20%;
+  margin: 2%;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+#recomended > div > div:hover {
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+}
+#box3 > div > img {
+  width: 100%;
+}
+/* =================================================================================== */
+#fourbox {
+  text-align: center;
+}
+#fourbox > div {
+  margin: auto;
+  padding: 2%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  place-items: center;
+}
+#fourbox > div > div {
+  margin: auto;
+}
+#fourbox > div > div > img {
+  display: block;
+  width: 100%;
+}
+/* =========================================================================== */
+#ft2 {
+  display: flex;
+  justify-content: center;
+  margin: 3% 0 2%;
+}
+#ft2 > div {
+  width: 80%;
+  padding: 1%;
+}
+#ft2 > div > div:nth-child(1) > img {
+  padding-top: 1%;
+  padding-bottom: 1%;
+  width: 100%;
+}
+#ft2 > div > div:nth-child(2) > img {
+  padding-top: 1%;
+  padding-bottom: 1%;
+  width: 100%;
+}
+#ft2of3 > div {
+  display: flex;
+}
+#leftbox {
+  width: 70%;
+  padding: 2%;
+}
+
+#rightbox {
+  display: flex;
+  padding: 2%;
+}
+#rightbox > div {
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
+}
+#rightbox > div > a {
+  text-decoration: none;
+  color: black;
+}
+/* ============================================================== */
+#footer1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 15px;
+}
+#firstbox {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+#firstbox > div {
+  display: flex;
+  border-radius: 20px;
+  align-items: center;
+  padding: 1%;
+  background-color: black;
+  color: white;
+  margin: 1%;
+}
+#firstbox > div > img {
+  width: 60px;
+  height: 60px;
+  margin: 1%;
+  filter: invert();
+}
+#firstbox > div > div {
+  margin: 1%;
+  border-radius: 10px;
+}
+/* =========================================================================================== */
+button {
+  color: rgb(0, 0, 0);
+  padding: 14px 20px;
+  margin: 8px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 15px;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+/* Center the image and position the close button */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+  position: relative;
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .prev,
+  .next,
+  .text {
+    font-size: 11px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  #selectors {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  #fourbox > div {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  #ShopbyCategory > div {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  #firstbox {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  #footerlast > div {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  #searchbox {
+    display: none;
+  }
+  #storebutton {
+    display: none;
+  }
 }
