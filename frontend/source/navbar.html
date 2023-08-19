@@ -1,53 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navbar</title>
-    <link rel="stylesheet" href="styles/navbar.css">
-</head>
-
-<body>
-
-    <!--Navigation bar-->
-    <div id="nav-logo">
-        <img src="https://cdn-icons-png.flaticon.com/512/9749/9749384.png" alt="" srcset="">
-        <h1>RUNFAST</h1>
-    </div>
-    <div id="nav-options">
-        <div >
-            <input type="text" placeholder="Search Here" id="searchbox">
-            <div id="storebutton">
-                <span>
-                    <img src="https://cdn-icons-png.flaticon.com/128/2167/2167265.png" alt="">
-                </span>
-                Choose a store
-            </div>
-
-            <div id="accountbtn">
-                <span>
-                    <img src="https://cdn-icons-png.flaticon.com/128/3177/3177440.png" alt="">
-                </span>
-                <select name="" id="account">
-                    <option value="show" id="showname">Account</option>
-                    <option value="Logout" id="logout">Logout</option>
-                </select>
-            </div>
-
-            <div>
-                <span>
-                    <img src="https://cdn-icons-png.flaticon.com/128/3081/3081559.png" alt="">
-                </span>
-                <a href="./cart.html" style="text-decoration: none; color: #000;">
-                    Bag
-                </a>
-            </div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap demo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/9749/9749384.png"
+          alt="RunFast"
+          style="width: 50px"
+        />
+        <a class="navbar-brand" href="../index.html">RunFast</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Cart</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Profile
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Orders</a></li>
+                <li><a class="dropdown-item" href="#">Whislist</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="#">Logout</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form>
         </div>
-    </div>
-    <!--End of Navigation bar-->
-
-</body>
-<!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
-<script src="scripts/navbar.js"></script>
-
+      </div>
+    </nav>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
