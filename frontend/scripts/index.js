@@ -88,63 +88,7 @@ setInterval(() => {
     }
 }, 1500);
 
-// ===========================================================================================
-let createaccountbtn = document.getElementById("createaccountbtn")
-let Div1 = document.getElementById("id01")
-let Div2 = document.getElementById("id02")
-
-var modal = document.getElementById('id01');
-
-let accesskey = []
-
-console.log(accesskey)
-
-window.onload = function (event) {
-    if (accesskey.length == 0) {
-        setTimeout(() => {
-            modal.style.display = "block"
-        }, 3000);
-    } else {
-        Div1.style.display = "none"
-        Div2.style.display = "none"
-    }
-}
-
-// ==========================================================================================
-
-createaccountbtn.onclick = function (e) {
-    e.preventDefault()
-    Div1.style.display = "none";
-    Div2.style.display = "block"
-}
-let clearlocal = document.getElementById("account")
-clearlocal.addEventListener("change", (e) => {
-    localStorage.clear()
-    alert("Logout successfully")
-    window.location.reload()
-})
-
-window.onclick = function (event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-
 //========================================================================================
-
-let loginEmail = document.getElementById("loginUser")
-let loginPassword = document.getElementById("loginPass")
-let loginBtn = document.getElementById("loginbtn")
-
-loginBtn.addEventListener("click", (e) => {
-    e.preventDefault()
-
-    if (checkEmployees()) {
-        Div1.style.display = "none"
-        Div2.style.display = "none"
-        // window.location.reload()
-    }
-})
 
 let showName = document.querySelector("#showname")
 function checkEmployees() {

@@ -29,7 +29,7 @@
 }
 /* ============================================================================ */
 footer {
-  background-color: aliceblue;
+  background-color: rgb(0, 136, 255);
 }
 #footerlast {
   display: grid;
