@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <link rel="stylesheet" href="/frontend/styles/products.css">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+    <nav id="navbar"></nav> <!-- Importing it using jquery  -->
+
+    <main id="mainDiv">
+        <div id="freeSpace">
+            <input type="number" placeholder="Enter Price" name="price" id="inputPrice"></input>
+            <button class="btnleft" id="btnPrice" name="price">Filter By Price</button>
+            <br>
+            <form>
+                <input  type="number" min="1" max="5" placeholder="Enter Rating" name="rating" id="ratingValue"></input>
+            </form>
+            <button id="btnRating" class="btnleft" name="rating">Filter By Rating</button>
+            <br>
+            <input type="text" placeholder="Enter Brand" name="brand" id="inputBrand"></input>
+            <button class="btnleft" id="btnBrand" name="brand">Filter By Brand</button>
+            <br>
+            <select id="sort">
+                <option value="sort">Sort</option>
+                <option value="desc">Sort High To Low</option>
+                <option value="asc">Sort Low To High</option>
+            </select>
+            <br>
+            <select id="colorSelect">
+                <option value="">Choose Color</option>
+                <option value="black">Black</option>
+                <option value="white">White</option>
+                <option value="red">Red</option>
+                <option value="cream">Cream</option>
+                <option value="brown">Light Brown</option>
+                <option value="pink">Pink</option>
+            </select>
+    
+        </div>
+        <div id="imagesToFetch">
+            <div id="data-list-wrapper">
+    
+            </div>
+            <div id="pagination-wrapper">
+    
+            </div>
+        </div>
+    </main>
+
+    <footer id="footer"></footer> <!-- Importing it using jquery  -->
+
+</body>
+<script>
+    $(function () {
+        $("#navbar").load("navbar.html");
+    });
+    $(function () {
+        $("#footer").load("footer.html");
+    });
+</script>
+<script src="/frontend/scripts/products.js"></script>
+</html>
