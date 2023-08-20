@@ -255,13 +255,14 @@
   overflow-x: auto;
   margin: 1%;
 }
+#box3 > div {
+  width: 500px;
+}
 #box3::-webkit-scrollbar {
   width: 0px;
   height: 0px;
 }
 #recomended > div > div {
-  min-width: 20%;
-  max-width: 20%;
   margin: 2%;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
@@ -269,7 +270,7 @@
   box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
 }
 #box3 > div > img {
-  width: 100%;
+  width: 12rem;
 }
 /* =================================================================================== */
 #fourbox {
@@ -297,8 +298,8 @@
   margin: 3% 0 2%;
 }
 #ft2 > div {
-  width: 80%;
-  padding: 1%;
+  width: 100%;
+  padding: 1rem;
 }
 #ft2 > div > div:nth-child(1) > img {
   padding-top: 1%;
@@ -400,6 +401,13 @@ img.avatar {
 }
 
 @media screen and (max-width: 1000px) {
+  #ft2 {
+    font-size: 11px;
+  }
+  #leftbox {
+    width: 100%;
+    padding: 2%;
+  }
   #selectors {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -414,6 +422,9 @@ img.avatar {
   }
   #footerlast > div {
     grid-template-columns: repeat(3, 1fr);
+  }
+  #ft2of3 > div {
+    flex-direction: column;
   }
   #searchbox {
     display: none;
