@@ -224,7 +224,7 @@ input {
 
 @media screen and (max-width: 500px) {
   html {
-    font-size: 45%;
+    font-size: 65%;
   }
   form {
     padding: 0 0.5rem;
@@ -233,6 +233,6 @@ input {
     padding: 0 0.5rem;
   }
   .container {
-    width: 280px;
+    width: 380px;
   }
 }
