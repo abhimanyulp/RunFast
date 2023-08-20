@@ -211,9 +211,6 @@ input {
 }
 
 @media screen and (max-width: 1000px) {
-  html {
-    font-size: 65%;
-  }
   form {
     padding: 0 1rem;
   }

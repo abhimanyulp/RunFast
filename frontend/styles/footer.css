@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: smaller;
 }
 #firstbox {
   display: grid;
@@ -51,9 +50,6 @@ footer {
 }
 
 @media screen and (max-width: 700px) {
-  * {
-    font-size: 75%;
-  }
   #firstbox {
     grid-template-columns: repeat(1, 1fr);
   }
