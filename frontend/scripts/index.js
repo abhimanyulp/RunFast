@@ -51,114 +51,45 @@ bb1El.onclick = function () {
 //slideshow===========================================
 
 //================================================slideshow======================================
-let slideIndex = 1;
-showSlides(slideIndex);
+const sliderContainer = document.querySelector('.slider-container');
+const images = ['https://d1csarkz8obe9u.cloudfront.net/posterpreviews/shoe-cover-promotion-design-template-3342116f18fc86233f782b63f4c40430_screen.jpg?ts=1619586236', 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/nike-shoes-facebook-ad-design-template-d6596b25a6b7653604b53b589c4df176_screen.jpg?ts=1613405853', 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/nike-shoes-facebook-ad-design-template-3feddc44f949d144553f31630a701ac7_screen.jpg?ts=1613411918']
+const prevButton = document.querySelector('.prev-button');
+const nextButton = document.querySelector('.next-button');
 
-function plusSlides(n) {
-    showSlides(slideIndex += n);
+window.onload = () => {
+    const styles = getComputedStyle(sliderContainer);
+    const currentAnimations = styles.animation;
+
+    // if (currentAnimations.includes('blink')) {
+    //     sliderContainer.style.animation = currentAnimations.replace('blink', '').trim();
+    // }
+
+    console.log(currentAnimations)
 }
 
-function currentSlide(n) {
-    showSlides(slideIndex = n);
-}
+let currentIndex = 0;
 
-function showSlides(n) {
-    let i;
-    let slides = document.getElementsByClassName("mySlides");
-    let dots = document.getElementsByClassName("dot");
-    if (n > slides.length) { slideIndex = 1 }
-    if (n < 1) { slideIndex = slides.length }
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
-    for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
-    }
-    slides[slideIndex - 1].style.display = "block";
-    dots[slideIndex - 1].className += " active";
-}
-let slidevalue = 1
-
-setInterval(() => {
-    if (slideIndex < 3) {
-        showSlides(slideIndex);
-        slideIndex++
+function nextSlide() {
+    if (currentIndex == images.length - 1) {
+        currentIndex = 0
+        sliderContainer.style.backgroundImage = `url(${images[currentIndex]})`
     } else {
-        slideIndex = 1
+        currentIndex++
+        sliderContainer.style.backgroundImage = `url(${images[currentIndex]})`
     }
-}, 1500);
-
-//========================================================================================
-
-let showName = document.querySelector("#showname")
-function checkEmployees() {
-    let user = []
-    let userObj = {
-        email: loginEmail.value,
-        password: loginPassword.value
-    };
-
-    fetch(`https://nutritious-sugared-fur.glitch.me/users`, {
-        method: "GET",
-        headers: {
-            'Content-type': 'application/json'
-        }
-    })
-
-        .then((res) => res.json())
-        .then((data) => {
-            data.filter(ele => {
-                if (ele.email == userObj.email && ele.password == userObj.password) {
-                    // Swal.fire('Login Successful')
-                    alert("Login successful")
-                    showName.innerHTML = `Hello,${ele.name}`
-                    user.push(ele.id)
-                    localStorage.setItem("key", JSON.stringify(user))
-                    return true
-                }
-            })
-        })
-    return fetch
 }
 
-////////////////////////////////////////////////////////////////////////////
-let signUsername = document.getElementById("signUser")
-let signName = document.getElementById("signName")
-let signAddress = document.getElementById("signAddress")
-let signPassword = document.getElementById("signPass")
-let signupbtn = document.getElementById("signupbtn")
-
-signupbtn.addEventListener("click", (e) => {
-    e.preventDefault()
-    fetchAndAddEmployees()
-    // Swal.fire('Account Created')
-    alert("Account created")
-    window.location.reload()
-})
-
-function fetchAndAddEmployees() {
-    let userObj = {
-
-        name: signName.value,
-        email: signUsername.value,
-        address: signAddress.value,
-        password: signPassword.value,
-        cart: []
-    };
-
-    console.log(userObj)
-
-    fetch(`https://nutritious-sugared-fur.glitch.me/users`, {
-        method: "POST",
-        body: JSON.stringify(userObj),
-        headers: {
-            'Content-type': 'application/json'
-        }
-    })
-        .then((res) => res.json())
-        .then((data) => {
-            console.log(data);
-        })
+function prevSlide() {
+    if (currentIndex == 0) {
+        return;
+    } else {
+        currentIndex--
+        sliderContainer.style.backgroundImage = `url(${images[currentIndex]})`
+    }
 }
 
-  //=====================================================================
+nextButton.addEventListener('click', nextSlide);
+prevButton.addEventListener('click', prevSlide);
+
+setInterval(nextSlide, 2000)
+
