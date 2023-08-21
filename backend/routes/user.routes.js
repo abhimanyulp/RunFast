@@ -19,7 +19,7 @@ userRouter.post("/login", async (req, res) => {
             bcrypt.compare(password, user.password, (err, result) => {
                 if (result) {
                     const token = jwt.sign({ userID: user._id }, process.env.PrivateKey, { expiresIn: '3h' });
-                    res.status(200).send({ "msg": "Login Success!", token })
+                    res.status(200).send({ "msg": "Signin Success!", token })
                 } else {
                     res.status(400).send({ "msg": "Incorrect Password" })
                 }
@@ -38,7 +38,7 @@ userRouter.post("/login", async (req, res) => {
 
 userRouter.post("/register", async (req, res) => {
 
-    const { email, password, username } = req.body
+    const { email, password, name } = req.body
 
     try {
         const user = await userModel.findOne({ email })
@@ -47,9 +47,9 @@ userRouter.post("/register", async (req, res) => {
             res.status(400).send({ "msg": "User already exist!" })
         } else {
             bcrypt.hash(password, 3).then(async (hash) => {
-                const user = new userModel({ email, password: hash, username })
+                const user = new userModel({ email, password: hash, name })
                 await user.save()
-                res.status(200).send({ "msg": "Registeration has been done!" })
+                res.status(200).send({ "msg": "Registeration completed!" })
             });
         }
 

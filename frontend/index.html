@@ -27,32 +27,14 @@
         <button id="right"></button>
       </div>
       <!-- ================================================================================ -->
-      <div id="testing">
-        <div class="slideshow-container">
-          <div class="mySlides fade">
-            <img
-              src="https://w0.peakpx.com/wallpaper/888/775/HD-wallpaper-nike-logo-the-global-brand-advertising-16.jpg"
-              style="width: 100%"
-            />
-            <div class="text">Nike Air Collections</div>
-          </div>
-          <div class="mySlides fade">
-            <img
-              src="https://www.the-sun.com/wp-content/uploads/sites/6/2022/05/NA-Dunkin-x-Puma-offplatform-1.jpg?strip=all&quality=100&w=1920&h=1080&crop=1"
-              style="width: 100%"
-            />
-            <div class="text">Nike Air Collections</div>
-          </div>
-
-          <a class="prev" onclick="plusSlides(-1)">❮</a>
-          <a class="next" onclick="plusSlides(1)">❯</a>
+      <div id="outer-slider-container">
+        <button class="prev-button"><</button>
+        <div class="slider-container">
+          <!-- <div class="slider">
+            slides will be here
+          </div> -->
         </div>
-        <br />
-
-        <div style="text-align: center">
-          <span class="dot" onclick="currentSlide(1)"></span>
-          <span class="dot" onclick="currentSlide(2)"></span>
-        </div>
+        <button class="next-button">></button>
       </div>
       <hr />
       <!-- ================================================================================ -->
@@ -424,5 +406,5 @@
       $("#footer").load("source/footer.html");
     });
   </script>
-  <script src="scripts/index.js"></script>
+  <script src="./scripts/index.js"></script>
 </html>
