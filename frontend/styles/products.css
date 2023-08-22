@@ -1,217 +1,284 @@
-*{
-    margin:0;
+* {
+    margin: 0;
     padding: 0;
+
 }
 
-
-#mainDiv{
-    width:90%; 
+#mainDiv {
+    width: 90%;
     display: flex;
-    padding:4%;
-  
-   /* height:500px; */
-   margin: auto;
-}
-
-#freeSpace{
-    width:20%; 
-   
-}
-
-#imagesToFetch{
-    width:70%;
-    margin: auto;
-    justify-content:space-around;
+    padding: 4%;
+    /* border: 2px solid red; */
     /* height:500px; */
+    margin: auto;
+}
+
+#freeSpace {
+    width: 20%;
+    height: 400px;
+    min-width: 150px;
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+#imagesToFetch {
+    width: 70%;
+    margin: auto;
+    justify-content: space-around;
+    /* height:500px; */
+    /* border: 2px solid red; */
+
 }
 
 
-input{
-    width:95%;
-    height:2vw;
+input {
+    width: 95%;
+    height: 30px;
     border-radius: 1vw;
     margin-bottom: 1vw;
     margin-top: 1vw;
+    margin-bottom: 10px;
+    border: 1px solid grey;
+    padding: 0px 10px;
 }
 
-.btnleft{
+.btnleft {
     display: block;
     margin: auto;
-    width:60%;
-    height:2vw;
+    width: 60%;
+    height: 30px;
     border-radius: 1vw;
     background-color: white;
     color: black;
     cursor: pointer;
+    border: 1px solid grey;
 }
 
-#sort{
-    height:2vw;
+#sort {
+    /* height:2vw; */
+    height: 30px;
     cursor: pointer;
 }
 
-#sort:hover{
-    height:2vw;
+#sort:hover {
+    /* height:2vw; */
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
+
+#colorSelect {
+    /* height:2vw; */
+    height: 30px;
+    cursor: pointer;
+}
+
+#colorSelect:hover {
+    /* height:2vw; */
     cursor: pointer;
     background-color: black;
     color: white;
 }
 
-#colorSelect{
-    height:2vw;
-    cursor: pointer;
-}
-
-#colorSelect:hover{
-    height:2vw;
-    cursor: pointer;
-    background-color: black;
-    color: white;
-}
 .alreadyAddedButton {
-    width:20vw;
-    height:2.5vw;
+    width: 20vw;
+    height: 30px;
     margin-top: 2vw;
-    border-radius: 1vw;
+    border-radius: .5vw;
     background-color: white;
-    font-size: medium;
+    /* font-size: medium; */
+    font-size: 1.2vw;
     color: black;
     pointer-events: none;
 }
 
-select{
+select {
     display: block;
     margin: auto;
-    width:60%;
+    width: 60%;
     border-radius: 1vw;
     background-color: white;
     color: black;
-    height:1.5vw;
-    margin-top: 1.5vw;;
+    height: 1.5vw;
+    margin-top: 1.5vw;
+    ;
 }
 
-/* #data-list-wrapper{
-    border: 2px solid red;
-} */
-
-#data-list-wrapper.smallCard{
+#data-list-wrapper.smallCard {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(3, 1fr);
 }
 
-#card-list{
+#card-list {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap:1vw;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2vw;
     margin: auto;
 }
 
-#card-list  img {
-    width:15vw;
-    height:15vw;
+#card-list img {
+    /* width:15vw; */
+    height: 15vw;
     display: block;
     margin: auto;
-    width:100%
+    width: 100%
 }
 
-#card-list  p {
-    
+#card-list p {
     margin: auto;
 }
 
-.smallCard{
+.smallCard {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
-    border-top-left-radius: 2vw;
-    border-top-right-radius: 2vw;
+    border-top-left-radius: 1.5vw;
+    border-top-right-radius: 1.5vw;
+    /* width: auto;
+    height: auto; */
 }
 
-.smallCard>img{
-    border-top-left-radius: 2vw;
-    border-top-right-radius: 2vw;
+.smallCard>img {
+    border-top-left-radius: 1.5vw;
+    border-top-right-radius: 1.5vw;
+    width: 100%;
+    /* border: 2px solid red; */
+
 }
 
-.smallCard:hover{
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+.smallCard:hover {
+    /* box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset; */
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
     /* border-radius: 2vw; */
-    border-top-left-radius: 2vw;
+    /* border-top-left-radius: 2vw;
+    border-top-right-radius: 2vw; */
+}
+
+.smallCard>img:hover {
+    /* border-top-left-radius: 2vw;
     border-top-right-radius: 2vw;
-} 
-
-.smallCard>img:hover{
-    border-top-left-radius: 2vw;
-    border-top-right-radius: 2vw;;
+    ; */
 }
 
-.paginationBtn{
+#pagination-wrapper {
+    margin-top: 50px;
+}
+
+.paginationBtn {
     margin-top: 2vw;
-    width:4vw;
-    height: 3vw;;
+    width: 4vw;
+    height: 3vw;
     border-radius: 1vw;
     background-color: white;
-    font-size: medium;
+    font-size: 1.5vw;
     margin-left: 1vw;
-
+    border: 1px solid grey;
 }
 
-.paginationBtn:hover{
-    
+.paginationBtn:hover {
     background-color: black;
     color: white;
-    font-size: medium;
-
+    /* font-size: medium; */
 }
 
 
-.btnCart{
-    width:20vw;
-    height:2.5vw;
+.btnCart {
+    width: 20vw;
+    /* height:2.5vw; */
+    height: 30px;
     margin-top: 2vw;
-    border-radius: 1vw;
+    border-radius: .5vw;
     background-color: white;
-    font-size: medium;
-
+    font-size: 1.2vw;
+    border: 1.5px solid black;
 }
 
-.btnCart:hover{
+.btnCart:hover {
     background-color: black;
     color: white;
-    
 }
 
-.smallCard > :nth-child(2){
+.smallCard> :nth-child(2) {
     display: none;
 }
 
-.smallCard{
+.smallCard {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.btnleft:hover{
+.btnleft:hover {
     background-color: black;
     color: white;
 }
+
 button {
     cursor: pointer;
 }
 
 @media only screen and (min-width: 500px) and (max-width: 768px) {
-    #card-list{
+    #card-list {
         display: grid;
-        grid-template-columns: repeat(2,1fr);
-        width:auto; 
+        grid-template-columns: repeat(2, 1fr);
+        width: auto;
     }
 
-    
+    .alreadyAddedButton,
+    .btnCart {
+        width: 100%;
+        font-size: 1.8vw;
+    }
+
+    .paginationBtn {
+        width: 6vw;
+        height: 4vw;
+        font-size: 2vw;
+    }
+
 }
 
 @media only screen and (min-width: 200px) and (max-width: 500px) {
-    #card-list{
-        display: grid;
-        grid-template-columns: repeat(1,1fr);
-        width:10vw;
+    #card-list {
+        /* display: grid; */
+        grid-template-columns: repeat(1, 1fr);
+        width: 60vw;
+        gap: 5vw;
+        /* height: 200px; */
+        /* width:auto;  */
+        /* border: 2px solid red; */
     }
 
-   
+    #mainDiv {
+        flex-direction: column;
+    }
+
+    #freeSpace {
+        width: 70%;
+        margin: auto;
+        margin-bottom: 50px;
+    }
+
+    .alreadyAddedButton,
+    .btnCart {
+        width: 100%;
+        font-size: 2vw;
+    }
+
+    #card-list img {
+        /* width:15vw; */
+        height: 35vw;
+    }
+
+    .paginationBtn {
+        width: 8vw;
+        height: 6vw;
+        /* border-radius: 1vw; */
+        font-size: 3vw;
+        /* margin-left: 1vw; */
+    
+    }
+
+
 }
