@@ -1,42 +1,60 @@
-// const baseServerURL = "http://localhost:8080"
-const baseServerURL = "https://runfast.onrender.com"
+const baseServerURL = "http://localhost:8080"
+// const baseServerURL = "https://runfast.onrender.com"
 let paginationWrapperGlobal = document.getElementById("pagination-wrapper");
 let userId = localStorage.getItem('key');
 
+let token = getCookie("token")
+// console.log(token)
 
-if (userId != null) {
-    userId = JSON.parse(userId)[0];
-} else {
-    userId = 1;
-}
-
-if (localStorage.getItem('localCartData') == null) {
-    let url = `${baseServerURL}/users`;
-    fetch(url)
-        .then(res => {
-            return res.json();
-        })
-        .then(data => {
-            getActualUser(data);
-        })
-        .catch(e => {
-            console.log(e);
-        })
-}
-
-
-function getActualUser(users) {
-    let currentUser = users.filter(user => {
-        if (user.id == userId) {
-            return true;
-        }
-        return false;
-    })
-    if (currentUser.length > 0) {
-        let user = currentUser[0];
-        localStorage.setItem('localCartData', JSON.stringify(user));
+function getCookie(cname) {
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
     }
-}
+    return "";
+  }
+
+
+// if (userId != null) {
+//     userId = JSON.parse(userId)[0];
+// } else {
+//     userId = 1;
+// }
+
+// if (localStorage.getItem('localCartData') == null) {
+//     let url = `${baseServerURL}/users`;
+//     fetch(url)
+//         .then(res => {
+//             return res.json();
+//         })
+//         .then(data => {
+//             getActualUser(data);
+//         })
+//         .catch(e => {
+//             console.log(e);
+//         })
+// }
+
+
+// function getActualUser(users) {
+//     let currentUser = users.filter(user => {
+//         if (user.id == userId) {
+//             return true;
+//         }
+//         return false;
+//     })
+//     if (currentUser.length > 0) {
+//         let user = currentUser[0];
+//         localStorage.setItem('localCartData', JSON.stringify(user));
+//     }
+// }
 
 
 
@@ -59,7 +77,7 @@ function fetchShoes(url) {
             let total = data.totalItems;
             createButton(total);
             mainData = data.data;
-            console.log(data.data);
+            // console.log(data.data);
             display(data.data);
         })
         .catch((error) => {
@@ -68,9 +86,31 @@ function fetchShoes(url) {
 }
 
 function checkIfProductAlreadyExists(id) {
-    let x = localStorage.getItem("localCartData");
-    let cart = JSON.parse(x).cart;
-    if (cart == undefined) {
+    // let x = localStorage.getItem("localCartData");
+    // let cart = JSON.parse(x).cart;
+
+    let cart = null
+
+    fetch(`${baseServerURL}/cart`,{
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+            'authorization': token
+        }
+    })
+    .then((res) => res.json())
+    .then((data) => {
+        // console.log(data)
+        cart = data
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+
+
+
+
+    if (cart == null) {
         return false;
     }
     let filterData = cart.filter(element => {
@@ -107,12 +147,14 @@ function display(data) {
                     return false;
                 }
             })
-            addToLS(filteredData);
+            // console.log(id)
+            // addToLS(filteredData);
+            changeInServer(id)
             let button = document.getElementById(id);
             button.disabled = true;
             button.setAttribute('class', 'alreadyAddedButton');
             button.innerText = 'Product Added To Cart'
-            console.log(filteredData);
+            // console.log(filteredData);
         })
     }
     disableAllCartButton();
@@ -120,9 +162,28 @@ function display(data) {
 }
 
 function disableAllCartButton() {
-    let x = localStorage.getItem("localCartData");
-    let cart = JSON.parse(x).cart;
-    if (cart == undefined || cart.length <= 0) {
+    //Instead of this, fetch all cart of user and perform these tasks
+    // let x = localStorage.getItem("localCartData");
+    // let cart = JSON.parse(x).cart;
+    let cart = null
+
+    fetch(`${baseServerURL}/cart`,{
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+            'authorization': token
+        }
+    })
+    .then((res) => res.json())
+    .then((data) => {
+        // console.log(data)
+        cart = data
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+
+    if (cart == null || cart.length <= 0) {
         return;
     }
     for (let i = 0; i < cart.length; ++i) {
@@ -134,14 +195,15 @@ function disableAllCartButton() {
     }
 }
 
-function changeInJsonServer(loggedInUser, id) {
-    let url = `${baseServerURL}/users/${id}`;
+function changeInServer(productId) {
+    let url = `${baseServerURL}/cart`;
     fetch((url), {
-        method: "PUT",
+        method: "POST",
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'authorization': token
         },
-        body: JSON.stringify(loggedInUser)
+        body: JSON.stringify({productId})
     })
         .then((res) => {
             return res.json();
@@ -155,19 +217,19 @@ function changeInJsonServer(loggedInUser, id) {
 }
 
 function addToLS(filteredData) {
-    let x = localStorage.getItem("localCartData");
+    // let x = localStorage.getItem("localCartData");
 
-    let loggedInUser = JSON.parse(x);
-    let id = loggedInUser.id;
-    console.log(id);
-    if (loggedInUser.cart !== undefined) {
-        loggedInUser.cart.push(filteredData[0]);
-    } else {
-        loggedInUser.cart = filteredData;
-    }
+    // let loggedInUser = JSON.parse(x);
+    // let id = loggedInUser.id;
+    // console.log(id);
+    // if (loggedInUser.cart !== undefined) {
+    //     loggedInUser.cart.push(filteredData[0]);
+    // } else {
+    //     loggedInUser.cart = filteredData;
+    // }
 
-    localStorage.setItem("localCartData", JSON.stringify(loggedInUser));
-    changeInJsonServer(loggedInUser, id);
+    // localStorage.setItem("localCartData", JSON.stringify(loggedInUser));
+    // changeInJsonServer(loggedInUser, id);
 }
 
 

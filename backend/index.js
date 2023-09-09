@@ -5,6 +5,7 @@ const { connection } = require("./db")
 const { userRouter } = require("./routes/user.routes")
 const { productRouter } = require("./routes/product.routes")
 const { cartRouter } = require("./routes/cart.routes")
+const { auth } = require("./middlewares/auth.middlware")
 
 const app = express()
 app.use(cors())
@@ -17,6 +18,7 @@ app.get("/", (req, res) => {
 
 app.use("/user", userRouter)
 app.use("/product", productRouter)
+app.use(auth)
 app.use("/cart", cartRouter)
 
 const Port = process.env.Port || 8080
