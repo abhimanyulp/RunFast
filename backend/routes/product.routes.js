@@ -7,13 +7,14 @@ const { productModel } = require("../models/product.model")
 
 productRouter.post("/add", async (req, res) => {
 
-    const { } = req.body
+    const { name, price, size, gender, color, brand, rating, image } = req.body
 
     try {
-        res.status(200).send({ "msg": "", })
-
+        let newProduct = new productModel({ name, price, size, gender, color, brand, rating, image })
+        await newProduct.save()
+        return res.status(200).send({ "msg": "New product is added!" })
     } catch (error) {
-        res.status(400).send({ "msg": error.message })
+        return res.status(400).send({ "msg": error.message })
     }
 
 })
