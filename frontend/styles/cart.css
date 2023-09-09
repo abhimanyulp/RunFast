@@ -15,14 +15,17 @@
 /* Cart Container */
 #container-cart {
     /* border: 2px solid black; */
-    display: flex;
+    /* display: flex; */
     /* width: 100%; */
+
+    display: grid;
+    grid-template-columns: 70% 30%;
     height: 70vh;
     background-color: whitesmoke;
 }
 
 #container-product {
-    width: 70%;
+    width: 100%;
     overflow: auto;
 }
 
@@ -84,7 +87,7 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    width: 30%;
+    width: 100%;
     text-align: center;
 }
 
@@ -151,6 +154,8 @@
 
 @media screen and (max-width: 800px) {
 
-    /* NOT REQUIRED */
+    #container-cart {
+        grid-template-columns: repeat(1, 1fr);
+    }
 
 }

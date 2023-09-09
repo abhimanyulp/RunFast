@@ -12,48 +12,42 @@
 <body>
     <nav id="navbar"></nav> <!-- Importing it using jquery  -->
 
-    <main>
-        <!-- <div id="heading">
+    <main id="container-cart">
+        <div id="container-product">
             <h1>Your Bag</h1>
-            <h1 id="user-id-tag">userid</h1>
-        </div> -->
-        <div id="container-cart">
-            <div id="container-product">
-                <h1>Your Bag</h1>
-                <div id="container-products">
-                    <!-- Append all the cart item here -->
+            <div id="container-products">
+                <!-- Append all the cart item here -->
+            </div>
+        </div>
+
+        <div id="container-details">
+            <!-- <h1 id="user-id-tag">userid</h1> -->
+            <h1>Order Summary</h1>
+            <div id="subtotal-box">
+                <div>
+                    <P>Subtotal</P>
+                    <p id="subtotal">0</p>
+                </div>
+                <div>
+                    <p>Shipping</p>
+                    <p>Free</p>
                 </div>
             </div>
-
-            <div id="container-details">
-                <h1 id="user-id-tag">userid</h1>
-                <h1>Order Summary</h1>
-                <div id="subtotal-box">
-                    <div>
-                        <P>Subtotal</P>
-                        <p id="subtotal">0</p>
-                    </div>
-                    <div>
-                        <p>Shipping</p>
-                        <p>Free</p>
-                    </div>
-                </div>
-                <div id="coupon-box">
-                    <label for="coupon-sel">Apply Coupon</label>
-                    <select name="" id="coupon-sel">
-                        <option value="">select</option>
-                        <option value="10">10% Flat Off</option>
-                    </select>
-                </div>
-                <div id="total-box">
-                    <p>Total</p>
-                    <p id="total">0</p>
-                </div>
-                <button id="checkout-btn">
-                    <a href="./checkout.html" id="checkout">Checkout</a>
-                </button>
-
+            <div id="coupon-box">
+                <label for="coupon-sel">Apply Coupon</label>
+                <select name="" id="coupon-sel">
+                    <option value="">select</option>
+                    <option value="10">10% Flat Off</option>
+                </select>
             </div>
+            <div id="total-box">
+                <p>Total</p>
+                <p id="total">0</p>
+            </div>
+            <button id="checkout-btn">
+                <a href="./checkout.html" id="checkout">Checkout</a>
+            </button>
+
         </div>
     </main>
 

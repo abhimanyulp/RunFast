@@ -1,12 +1,27 @@
-//Cache
-let LSkeyData = document.cookie.token;
-
 
 //Getting key from local storage
 // let fetchedData = JSON.parse(localStorage.getItem("key"));
 
 // let LSkeyData = fetchedData[0];
 // let LSkeyData = 2;
+
+let token = getCookie("token")
+// console.log(token)
+
+function getCookie(cname) {
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
 
 
 const baseServerURL = "http://localhost:8080"
@@ -28,10 +43,10 @@ let subtotal = 0;
 let total = 0;
 
 
-let UserData;
-let UserCart;
-let OrderData;
-let UserName;
+// let UserData;
+// let UserCart;
+// let OrderData;
+// let UserName;
 
 
 
@@ -39,26 +54,55 @@ let UserName;
 
 
 //Fetching cart data
-fetch(baseServerURL, {
-    method: "GET",
-    headers: {
-        'Content-type': 'application/json'
-    }
-})
-    .then(res => res.json())
-    .then(data => {
-        // console.log(data)
-        UserData = FilterUser(data)
-        UserName = UserData[0].name
+// fetch(baseServerURL, {
+//     method: "GET",
+//     headers: {
+//         'Content-type': 'application/json'
+//     }
+// })
+//     .then(res => res.json())
+//     .then(data => {
+//         // console.log(data)
+//         UserData = FilterUser(data)
+//         UserName = UserData[0].name
 
-        UserCart = UserData[0].cart;
+//         UserCart = UserData[0].cart;
 
-        // console.log(UserData)
-        // console.log(UserData[0].cart.length)
+//         // console.log(UserData)
+//         // console.log(UserData[0].cart.length)
 
-        Display(UserCart);
-        userIdTag.innerText = `User: ${UserName}`;
+//         Display(UserCart);
+//         userIdTag.innerText = `User: ${UserName}`;
+//     })
+
+
+
+let init = () => {
+    fetch(`${baseServerURL}/cart`,{
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+            'authorization': token
+        }
     })
+    .then((res) => res.json())
+    .then((data) => {
+        // console.log(data)
+        if(data.length > 0){
+            Display(data)
+        }else{
+            container.innerHTML = "<h1> Cart is Empty! </h1>"
+        }
+
+        
+        // userIdTag.innerText = `User: ${"UserName"}`;
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+}
+init()
+    
 
 
 
@@ -110,16 +154,16 @@ checkoutbtn.addEventListener("click", () => {
 
 
 //Filtering data with LS key to specific user
-function FilterUser(data) {
-    let filtered = data.filter((element) => {
-        if (LSkeyData == element.id) {
-            return true
-        } else {
-            return false;
-        }
-    })
-    return filtered;
-}
+// function FilterUser(data) {
+//     let filtered = data.filter((element) => {
+//         if (LSkeyData == element.id) {
+//             return true
+//         } else {
+//             return false;
+//         }
+//     })
+//     return filtered;
+// }
 
 
 
@@ -211,16 +255,15 @@ function Display(data) {
 
         remove.addEventListener("click",()=>{
 
-            let filtered = filterWithID(id)
-
-            UserData[0].cart = filtered;
-
-            cartUpdate(UserData[0],LSkeyData)
+            // let filtered = filterWithID(id)
+            // UserData[0].cart = filtered;
+            cartDelete(id)
 
             total = 0;
             subtotal = 0;
 
-            Display(filtered)
+            // Display(filtered)
+            init()
 
             setTimeout(()=>{
                 window.location.reload()
@@ -242,36 +285,37 @@ function Display(data) {
 
 
 //Removing the element from cart
-function filterWithID(id){
-    let filtered = UserCart.filter((element)=>{
-        if (id != element.id) {
-            return true
-        } else {
-            return false;
-        }
-    })
-    return filtered;
-}
+// function filterWithID(id){
+//     let filtered = UserCart.filter((element)=>{
+//         if (id != element.id) {
+//             return true
+//         } else {
+//             return false;
+//         }
+//     })
+//     return filtered;
+// }
 
 
 //Replacing the user with updated cart
-function cartUpdate(updated,id){
-    let url = `${baseServerURL}/users/${id}`;
-    fetch(url,{
-      method:"PUT",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body:JSON.stringify(updated)
+function cartDelete(productId){
+    let url = `${baseServerURL}/cart`;
+    fetch((url), {
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json',
+            'authorization': token
+        },
+        body: JSON.stringify({productId})
     })
-    .then((res)=>{
-      return res.json();
-    })
-    .then((data)=>{
-      console.log(data);
-    })
-    .catch((error)=>{
-      console.log(error);
-    })
+        .then((res) => {
+            return res.json();
+        })
+        .then((data) => {
+            console.log(data);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
 
 }

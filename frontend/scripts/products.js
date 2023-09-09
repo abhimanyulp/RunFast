@@ -1,5 +1,5 @@
-const baseServerURL = "http://localhost:8080"
-// const baseServerURL = "https://runfast.onrender.com"
+// const baseServerURL = "http://localhost:8080"
+const baseServerURL = "https://runfast.onrender.com"
 let paginationWrapperGlobal = document.getElementById("pagination-wrapper");
 let userId = localStorage.getItem('key');
 
