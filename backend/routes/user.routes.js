@@ -9,7 +9,7 @@ const { userModel } = require("../models/user.model")
 
 userRouter.post("/login", async (req, res) => {
 
-    const { email, password } = req.body
+    const { email, password, userID } = req.body
 
     try {
         const user = await userModel.findOne({ email })
@@ -19,7 +19,7 @@ userRouter.post("/login", async (req, res) => {
             bcrypt.compare(password, user.password, (err, result) => {
                 if (result) {
                     const token = jwt.sign({ userID: user._id }, process.env.PrivateKey, { expiresIn: '3h' });
-                    res.status(200).send({ "msg": "Signin Success!", token })
+                    res.status(200).send({ "msg": "Signin Success!", token, userID})
                 } else {
                     res.status(400).send({ "msg": "Incorrect Password" })
                 }
