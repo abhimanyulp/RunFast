@@ -36,7 +36,8 @@ https://runfast.onrender.com **(Render)**
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+<img width="1069" alt="Screenshot 2023-09-10 005733" src="https://github.com/abhimanyulp/RunFast/assets/119414340/044d921d-e538-425e-b1f9-2d9bb831d5fd">
+
 
 
 ## API Reference
