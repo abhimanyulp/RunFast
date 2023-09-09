@@ -1,41 +1,18 @@
-
-//Getting key from local storage
-// let fetchedData = JSON.parse(localStorage.getItem("key"));
-
-// let LSkeyData = fetchedData[0];
-// let LSkeyData = 2;
-
-let token = getCookie("token")
-// console.log(token)
-
-function getCookie(cname) {
-    let name = cname + "=";
-    let ca = document.cookie.split(';');
-    for(let i = 0; i < ca.length; i++) {
-      let c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
-    }
-    return "";
-  }
-
-
+//Server Urls
 const baseServerURL = "http://localhost:8080"
 // const baseServerURL = "https://runfast.onrender.com"
 
 
+//Getting token from cookie
+let token = getCookie("token")
 
+
+//Elements
 let container = document.getElementById("container-products");
 let checkoutbtn = document.getElementById("checkout");
 let couponSel = document.getElementById("coupon-sel");
 
-
 let userIdTag = document.getElementById("user-id-tag")
-
 
 let totalEl = document.getElementById("total");
 let subtotalEl = document.getElementById("subtotal");
@@ -43,78 +20,40 @@ let subtotal = 0;
 let total = 0;
 
 
-// let UserData;
-// let UserCart;
-// let OrderData;
-// let UserName;
 
-
-
-// <--------------Fetching and Display user cart------------>
-
-
-//Fetching cart data
-// fetch(baseServerURL, {
-//     method: "GET",
-//     headers: {
-//         'Content-type': 'application/json'
-//     }
-// })
-//     .then(res => res.json())
-//     .then(data => {
-//         // console.log(data)
-//         UserData = FilterUser(data)
-//         UserName = UserData[0].name
-
-//         UserCart = UserData[0].cart;
-
-//         // console.log(UserData)
-//         // console.log(UserData[0].cart.length)
-
-//         Display(UserCart);
-//         userIdTag.innerText = `User: ${UserName}`;
-//     })
-
-
-
+//Fetching and Display User Cart
 let init = () => {
-    fetch(`${baseServerURL}/cart`,{
+    fetch(`${baseServerURL}/cart`, {
         method: "GET",
         headers: {
             'Content-Type': 'application/json',
             'authorization': token
         }
     })
-    .then((res) => res.json())
-    .then((data) => {
-        // console.log(data)
-        if(data.length > 0){
-            Display(data)
-        }else{
-            container.innerHTML = "<h1> Cart is Empty! </h1>"
-        }
+        .then((res) => res.json())
+        .then((data) => {
+            // console.log(data)
+            if (data.length > 0) {
+                Display(data)
+            } else {
+                container.innerHTML = "<h1> Cart is Empty! </h1>"
+            }
 
-        
-        // userIdTag.innerText = `User: ${"UserName"}`;
-    })
-    .catch((err) => {
-        console.log(err)
-    })
+
+            // userIdTag.innerText = `User: ${"UserName"}`;
+        })
+        .catch((err) => {
+            console.log(err)
+        })
 }
+
+//Calling intial Funtion
 init()
-    
 
 
 
 
-
-    
-
-
-
-// <---------------addEventListener----------------->
-
-
+//AddEventListeners
 
 //Apply coupon selector and changing total amount only once
 let flag = true;
@@ -126,8 +65,6 @@ couponSel.addEventListener("change", () => {
         flag = false
     }
 })
-
-
 
 //Temperoly saving order data to local stroage
 checkoutbtn.addEventListener("click", () => {
@@ -143,38 +80,29 @@ checkoutbtn.addEventListener("click", () => {
 
 
 
+//Functions
 
-
-
-
-
-
-// <--------------Functions-------------->
-
-
-
-//Filtering data with LS key to specific user
-// function FilterUser(data) {
-//     let filtered = data.filter((element) => {
-//         if (LSkeyData == element.id) {
-//             return true
-//         } else {
-//             return false;
-//         }
-//     })
-//     return filtered;
-// }
-
-
-
-
+//Get Cookie Funtion
+function getCookie(cname) {
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
 
 //Display Function
 function Display(data) {
     container.innerHTML = null;
 
     data.forEach((element) => {
-
 
         let card = document.createElement("div");
         card.setAttribute("id", "card");
@@ -188,13 +116,11 @@ function Display(data) {
         let details = document.createElement("div");
         details.setAttribute("id", "details")
 
-
         let title = document.createElement("p")
         title.innerText = element.name;
 
         let color = document.createElement("p")
         color.innerText = element.color;
-
 
         let price = document.createElement("p")
         price.innerText = `$${element.price}`;
@@ -203,7 +129,6 @@ function Display(data) {
         subtotal += element.price;
         totalEl.innerText = `$${total}`;
         subtotalEl.innerText = `$${subtotal}`;
-
 
         let quantity = document.createElement("div");
         quantity.setAttribute("id", "quantity")
@@ -217,8 +142,6 @@ function Display(data) {
 
         let btm_inc = document.createElement("button")
         btm_inc.innerText = "+"
-
-
 
         btm_dec.addEventListener("click", () => {
 
@@ -244,61 +167,38 @@ function Display(data) {
             value.innerText++
         })
 
-
         let id = element.id;
-
 
         let remove = document.createElement("button");
         remove.innerText = "x"
         remove.setAttribute("id", "removeBtn")
 
+        remove.addEventListener("click", () => {
 
-        remove.addEventListener("click",()=>{
-
-            // let filtered = filterWithID(id)
-            // UserData[0].cart = filtered;
             cartDelete(id)
 
             total = 0;
             subtotal = 0;
 
-            // Display(filtered)
             init()
 
-            setTimeout(()=>{
+            setTimeout(() => {
                 window.location.reload()
-            },2000)
-
+            }, 2000)
 
         })
-
 
         card.append(card_box, price, quantity, remove);
         card_box.append(img, details);
         details.append(title, color);
         quantity.append(btm_dec, value, btm_inc);
-
         container.append(card);
     })
 }
 
 
-
-//Removing the element from cart
-// function filterWithID(id){
-//     let filtered = UserCart.filter((element)=>{
-//         if (id != element.id) {
-//             return true
-//         } else {
-//             return false;
-//         }
-//     })
-//     return filtered;
-// }
-
-
-//Replacing the user with updated cart
-function cartDelete(productId){
+//Cart Item Delete Funtion
+function cartDelete(productId) {
     let url = `${baseServerURL}/cart`;
     fetch((url), {
         method: "DELETE",
@@ -306,7 +206,7 @@ function cartDelete(productId){
             'Content-Type': 'application/json',
             'authorization': token
         },
-        body: JSON.stringify({productId})
+        body: JSON.stringify({ productId })
     })
         .then((res) => {
             return res.json();

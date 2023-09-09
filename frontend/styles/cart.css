@@ -3,21 +3,8 @@
 }
 
 
-/* Heading */
-/* #heading {
-    width: 90%;
-    padding: 0% 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-} */
-
 /* Cart Container */
 #container-cart {
-    /* border: 2px solid black; */
-    /* display: flex; */
-    /* width: 100%; */
-
     display: grid;
     grid-template-columns: 70% 30%;
     height: 70vh;
@@ -34,14 +21,12 @@
     justify-content: space-around;
     height: 100px;
     margin-top: 30px;
-    /* border: 2px solid red; */
 }
 
 #card-box {
     display: flex;
     justify-content: space-around;
     width: 40%;
-    /* border: 2px solid red; */
 }
 
 #details {
@@ -49,7 +34,6 @@
 }
 
 #quantity {
-    /* border: 2px solid red; */
     height: 40px;
     display: flex;
     justify-content: center;
@@ -92,7 +76,6 @@
 }
 
 #subtotal-box {
-    /* height: 30vh; */
     width: 70%;
 }
 
@@ -138,7 +121,6 @@
     align-items: center;
     background-color: #EFEFEF;
     border-radius: 20px;
-    /* border: 5px solid darkgrey; */
 }
 
 #coupon-box>label {
@@ -148,8 +130,6 @@
 #coupon-box>select {
     width: 70%;
 }
-
-
 
 
 @media screen and (max-width: 800px) {
