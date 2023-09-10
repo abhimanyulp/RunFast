@@ -18,8 +18,7 @@ app.get("/", (req, res) => {
 
 app.use("/user", userRouter)
 app.use("/product", productRouter)
-app.use(auth)
-app.use("/cart", cartRouter)
+app.use("/cart", auth, cartRouter)
 
 const Port = process.env.Port || 8080
 app.listen(Port, async () => {
