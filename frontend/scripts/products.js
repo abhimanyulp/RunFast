@@ -99,13 +99,13 @@ function display(data) {
                 alert('Product Already Added to Card');
                 return;
             }
-            let filteredData = mainData.filter(element => {
-                if (element.id == id) {
-                    return true;
-                } else {
-                    return false;
-                }
-            })
+            // let filteredData = mainData.filter(element => {
+            //     if (element.id == id) {
+            //         return true;
+            //     } else {
+            //         return false;
+            //     }
+            // })
             changeInServer(id)
             let button = document.getElementById(id);
             button.disabled = true;
@@ -174,7 +174,7 @@ function cardList(data) {
     return `
       <div id="card-list">
         ${data.map((obj) => {
-        return cardElement(obj.id,
+        return cardElement(obj._id,
             obj.price,
             obj.size,
             obj.color,
