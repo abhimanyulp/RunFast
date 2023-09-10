@@ -1,6 +1,6 @@
 //Server Urls
-const baseServerURL = "http://localhost:8080"
-// const baseServerURL = "https://runfast.onrender.com"
+// const baseServerURL = "http://localhost:8080"
+const baseServerURL = "https://runfast.onrender.com"
 
 
 //Getting token from cookie
