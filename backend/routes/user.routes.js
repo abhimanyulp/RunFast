@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 
 const userRouter = express.Router()
-const { userModel } = require("../models/user.model")
+const { userModel, BlacklistModel } = require("../models/user.model")
 
 
 userRouter.post("/login", async (req, res) => {
@@ -19,7 +19,7 @@ userRouter.post("/login", async (req, res) => {
             bcrypt.compare(password, user.password, (err, result) => {
                 if (result) {
                     const token = jwt.sign({ userID: user._id }, process.env.PrivateKey, { expiresIn: '3h' });
-                    res.status(200).send({ "msg": "Signin Success!", token, userID})
+                    res.status(200).send({ "msg": "Signin Success!", token, userID })
                 } else {
                     res.status(400).send({ "msg": "Incorrect Password" })
                 }
@@ -56,7 +56,17 @@ userRouter.post("/register", async (req, res) => {
     } catch (error) {
         res.status(400).send({ "msg": error.message })
     }
+})
 
+userRouter.post("/logout/:token", async (req, res) => {
+    const token = req.params.token;
+    try {
+        let newBlacklistToken = new BlacklistModel({ token: token });
+        await newBlacklistToken.save();
+        return res.send({ "msg": "Logout successful" });
+    } catch (error) {
+        res.status(400).send({ "msg": error.message });
+    }
 })
 
 module.exports = { userRouter }
