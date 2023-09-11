@@ -17,6 +17,12 @@ window.addEventListener("load", (event) => {
     fetchShoes(url);
 });
 
+mainSection.innerHTML = `
+<div id="loading">
+    <img src="https://i.gifer.com/XVo6.gif">
+</div>
+`
+
 
 //Funtions
 function getCookie(cname) {
@@ -50,7 +56,6 @@ function fetchShoes(url) {
             console.log(error);
         })
 }
-
 
 
 
@@ -201,7 +206,6 @@ function createButton(total, filter, value) {
                 })
         })
     }
-
 }
 
 
