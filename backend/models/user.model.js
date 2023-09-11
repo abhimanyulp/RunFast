@@ -6,7 +6,7 @@ const userSchema = mongoose.Schema({
     name: { type: String, required: true },
     mycart: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'cart'
+        ref: 'product'
     }]
 }, {
     versionKey: false

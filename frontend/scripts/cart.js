@@ -19,6 +19,8 @@ let subtotalEl = document.getElementById("subtotal");
 let subtotal = 0;
 let total = 0;
 
+let isCartEmpty = true
+
 
 
 //Fetching and Display User Cart
@@ -32,15 +34,13 @@ let init = () => {
     })
         .then((res) => res.json())
         .then((data) => {
-            // console.log(data)
+            console.log(data)
             if (data.length > 0) {
                 Display(data)
+                isCartEmpty = false
             } else {
                 container.innerHTML = "<h1> Cart is Empty! </h1>"
             }
-
-
-            // userIdTag.innerText = `User: ${"UserName"}`;
         })
         .catch((err) => {
             console.log(err)
@@ -68,13 +68,11 @@ couponSel.addEventListener("change", () => {
 
 //Temperoly saving order data to local stroage
 checkoutbtn.addEventListener("click", () => {
-    OrderData = {
-        username: UserName,
-        totalAmount: total,
-        type: "none",
-        days: "none"
+    if(isCartEmpty){
+        alert("Please Add Some Item To Checkout!")
+    }else{
+        window.location.href = "./checkout.html"
     }
-    localStorage.setItem("order", JSON.stringify(OrderData));
 })
 
 
