@@ -1,6 +1,6 @@
 //Server Urls
-const baseServerURL = "http://localhost:8080"
-// const baseServerURL = "https://runfast.onrender.com"
+// const baseServerURL = "http://localhost:8080"
+const baseServerURL = "https://runfast.onrender.com"
 
 //Getting token from cookie
 let token = getCookie("token")
@@ -234,11 +234,11 @@ submitButton.addEventListener("click", (e) => {
       window.location.href = "/index.html"
     }, 3000)
 
-    notyf.success('Your changes have been successfully saved!');
+    notyf.success('Your order has been successfully placed!');
 
   }
   else {
-    notyf.error('Please fill the form first');
+    notyf.error('Please fill the card details first');
   }
 })
 
