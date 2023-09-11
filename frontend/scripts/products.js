@@ -17,6 +17,12 @@ window.addEventListener("load", (event) => {
     fetchShoes(url);
 });
 
+mainSection.innerHTML = `
+<div id="loading">
+    <img src="https://i.gifer.com/XVo6.gif">
+</div>
+`
+
 
 //Funtions
 function getCookie(cname) {
@@ -51,40 +57,6 @@ function fetchShoes(url) {
         })
 }
 
-function checkIfProductAlreadyExists(id) {
-
-    let cart = null
-
-    fetch(`${baseServerURL}/cart`, {
-        method: "GET",
-        headers: {
-            'Content-Type': 'application/json',
-            'authorization': token
-        }
-    })
-        .then((res) => res.json())
-        .then((data) => {
-            cart = data
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-
-
-    if (cart == null) {
-        return false;
-    }
-    let filterData = cart.filter(element => {
-        if (element.id == id) {
-            return true;
-        }
-        return false;
-    })
-    if (filterData.length > 0) {
-        return true;
-    }
-    return false;
-}
 
 
 //Display Functions
@@ -95,17 +67,6 @@ function display(data) {
     for (let i = 0; i < buttonElement.length; ++i) {
         buttonElement[i].addEventListener('click', event => {
             let id = event.target.id;
-            if (checkIfProductAlreadyExists(id)) {
-                alert('Product Already Added to Card');
-                return;
-            }
-            // let filteredData = mainData.filter(element => {
-            //     if (element.id == id) {
-            //         return true;
-            //     } else {
-            //         return false;
-            //     }
-            // })
             changeInServer(id)
             let button = document.getElementById(id);
             button.disabled = true;
@@ -118,8 +79,6 @@ function display(data) {
 
 function disableAllCartButton() {
 
-    let cart = null
-
     fetch(`${baseServerURL}/cart`, {
         method: "GET",
         headers: {
@@ -129,23 +88,19 @@ function disableAllCartButton() {
     })
         .then((res) => res.json())
         .then((data) => {
-            // console.log(data)
-            cart = data
+            let cart = data
+            for (let i = 0; i < cart.length; i++) {
+                let id = cart[i]._id;
+                let button = document.getElementById(id);
+                button.disabled = true;
+                button.innerText = 'Product Added To Cart'
+                button.setAttribute('class', 'alreadyAddedButton');
+            }
         })
         .catch((err) => {
             console.log(err)
         })
-
-    if (cart == null || cart.length <= 0) {
-        return;
-    }
-    for (let i = 0; i < cart.length; ++i) {
-        let id = cart[i].id;
-        let button = document.getElementById(id);
-        button.disabled = true;
-        button.innerText = 'Product Added To Cart'
-        button.setAttribute('class', 'alreadyAddedButton');
-    }
+    
 }
 
 function changeInServer(productId) {
@@ -251,7 +206,6 @@ function createButton(total, filter, value) {
                 })
         })
     }
-
 }
 
 

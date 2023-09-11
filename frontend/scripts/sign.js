@@ -1,3 +1,7 @@
+//Server Urls
+// const baseServerURL = "http://localhost:8080"
+const baseServerURL = "https://runfast.onrender.com"
+
 const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
 const container = document.getElementById('container');
@@ -17,7 +21,7 @@ signInButton.addEventListener('click', () => {
     container.classList.remove("right-panel-active");
 });
 
-// http://127.0.0.1:8080/user/register
+
 
 signupForm.addEventListener('submit', (e) => {
     e.preventDefault()
@@ -28,7 +32,7 @@ signupForm.addEventListener('submit', (e) => {
         password: signupPass.value
     }
 
-    fetch('http://127.0.0.1:8080/user/register', {
+    fetch(`${baseServerURL}/user/register`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -50,7 +54,7 @@ signinForm.addEventListener('submit', (e) => {
         password: signinPass.value
     }
 
-    fetch('http://127.0.0.1:8080/user/login', {
+    fetch(`${baseServerURL}/user/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
