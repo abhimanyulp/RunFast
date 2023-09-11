@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="../styles/adminSide.css">
+    <title>Admin Page2</title>
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li>
+                   <a href="#">
+                    <span class="icon Apple"><i class="fa fa-apple" aria-hidden="true"></i></span>
+                    <span class="title"><h2>Runfast</h2></span>
+                   </a>
+                </li>
+                <li>
+                 <a href="./adminProduct.html">
+                    <span class="icon"><i class="fa fa-list-ul" aria-hidden="true"></i></span>
+                    <span class="title">products list</span>
+                 </a>
+                </li>
+                <li>
+                <a href="index.html">
+                    <span class="icon"><i class="fa fa-info-circle" aria-hidden="true"></i></span>
+                    <span class="title">Product details</span>
+                </a>
+                </li>
+                <li>
+        <a href="admin_login.html">
+                <span class="icon"><i class="fa fa-sign-out" aria-hidden="true"></i></span>
+                <span class="title">Sign-Out</span>
+             </a>
+                </li>
+            </ul>
+        </div>
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle";"></div>
+                <div class="search">
+                    <label>
+                        <input type="text" placeholder="search here">
+                    </label>
+                </div>
+            </div>
+            <div class="cardbox">
+                       <!-- card-1 -->
+                <div class="card">
+                    
+                    <div>
+                         <div class="numbers">$ <span id="displaytotalcard"></span></div><br>
+                        <div class="cardName">Today's Ermings </div>
+                    </div>
+                    <div class="iconBox">
+                        <i class="fa fa-money" aria-hidden="true"></i>
+                    </div>
+               </div>
+                <!-- card-2 -->
+                <div class="card">
+                    
+                    <div>
+                         <div class="numbers"><span id="productdata"></span></div><br>
+                        <div class="cardName">Total Products</div>
+                    </div>
+                    <div class="iconBox">
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                    </div>
+               </div>
+                <!-- card-3 -->
+                <div class="card">
+                    
+                    <div>
+                         <div class="numbers"><span id="customerdata"></span></div><br>
+                        <div class="cardName">Customer</div>
+                    </div>
+                    <div class="iconBox">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                    </div>
+               </div>
+                <!-- card-4 -->
+                <div class="card">
+                    
+                    <div>
+                         <div class="numbers">$ <span id="profit"></span></div><br>
+                        <div class="cardName">Net Profit </div>
+                    </div>
+                    <div class="iconBox">
+                        <i class="fa fa-line-chart" aria-hidden="true"></i>
+                    </div>
+               </div>
+                
+            </div>
+
+            <div class="details">
+                <div class="recentOrders">
+                    <div class="cartHedder">
+                        <h2>Recent Orders</h2>
+                        <a href="#" class="btn" id="viewallbtn">View All</a>
+                    </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>price</td>
+                                    <td>payment</td>
+                                    <td>Delivery Status</td>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- append tr and td -->
+                            </tbody>
+                        </table>
+                   
+                </div>
+                <!-- <div class="recentCustomers">
+                    <div class="cartHedder">
+                        <h2>Recent Customer</h2>
+
+                    </div>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td >
+                                        <div class="imgBox"><img src="./admin_image/persone4.png" alt=""></div>
+                                    </td>
+                                    <td><h3>omkar <br><span>india</span></h3></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="imgBox"><img src="./admin_image/persone4.png" alt=""></div>
+                                    </td>
+                                    <td><h3>John<br><span>Italy</span></h3></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="imgBox"><img src="./admin_image/persone4.png" alt=""></div>
+                                    </td>
+                                    <td><h3>ajay<br><span>USA</span></h3></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                       
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+    
+</body>
+<script src="../scripts/adminSide.js"></script>
+</html>
+<!-- //omkar -->
