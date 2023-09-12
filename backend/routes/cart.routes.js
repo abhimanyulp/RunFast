@@ -1,6 +1,7 @@
-const { userModel } = require("../models/user.model");
+const mongoose = require('mongoose')
 const express = require('express');
 const cartRouter = express.Router();
+const { userModel } = require("../models/user.model");
 
 // Route for adding a product to the user's cart
 cartRouter.post('/add', async (req, res) => {
@@ -9,9 +10,17 @@ cartRouter.post('/add', async (req, res) => {
         const productId = req.body.productId;
         const quantity = req.body.quantity;
 
+        console.log(typeof (userId), typeof (productId));
+
+
         // Check if the product is already in the user's cart
         const isProductInCart = await userModel.aggregate([
-            { $match: { _id: mongoose.Types.ObjectId(userId), mycart: { $elemMatch: { $eq: mongoose.Types.ObjectId(productId) } } } }
+            {
+                $match: {
+                    _id: new mongoose.Types.ObjectId(userId),
+                    mycart: { $elemMatch: { product: new mongoose.Types.ObjectId(productId) } }
+                }
+            }
         ]);
 
         if (isProductInCart.length > 0) {
@@ -35,16 +44,33 @@ cartRouter.post('/add', async (req, res) => {
 // Route for getting the user's cart
 cartRouter.get("/get", async (req, res) => {
     try {
-        const userId = req.body.userID;
+        const userId = req.body.userId;
 
-        // Find the user by ID and populate their cart
-        const user = await userModel.findById(userId).populate('mycart').exec();
+        // Find the user by ID
+        const user = await userModel.findById(userId).populate({
+            path: 'mycart',
+            populate: {
+                path: 'product',
+                model: 'product'
+            }
+        }).exec();
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        if (!user.mycart) {
+            return res.status(404).json({ error: 'Cart not found' });
+        }
+
         res.status(200).json(user.mycart);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal server error' });
     }
 });
+
+
 
 // Route for deleting a product from the user's cart or clearing the entire cart
 cartRouter.delete("/delete/:id", async (req, res) => {
