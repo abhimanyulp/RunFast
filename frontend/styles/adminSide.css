@@ -115,6 +115,7 @@ body {
   width: 60px;
   height: 60px;
   background-color: red;
+  cursor: pointer;
 }
 .toggle::before {
   content: "\f0c9 ";
@@ -138,9 +139,20 @@ body {
 .search input {
   width: 100%;
   height: 40px;
-  border-radius: 40px;
+  border-radius: 0.3rem;
   padding: 5px 20px;
   outline: none;
+  border: none;
+  transition: 0.5s ease-in-out;
+}
+
+.search input:focus {
+  width: 100%;
+  height: 40px;
+  border-radius: 0.3rem;
+  padding: 5px 20px;
+  outline: none;
+  border: 2px solid rgb(0, 132, 255);
 }
 
 .cardbox {
@@ -154,42 +166,55 @@ body {
 .cardbox .card {
   position: relative;
   background-color: #dfdfdf;
-  padding: 20px;
+  padding: 1.5rem;
   display: flex;
   justify-content: space-evenly;
+  flex-direction: column;
   cursor: pointer;
   border-radius: 10px;
+  width: 100%;
+  gap: 0.5rem;
 }
+
+.cardbox .card:nth-child(1) {
+  background-color: #229954;
+}
+.cardbox .card:nth-child(2) {
+  background-color: #2874a6;
+}
+.cardbox .card:nth-child(3) {
+  background-color: #7d3c98;
+}
+.cardbox .card:nth-child(4) {
+  background-color: #cb4335;
+}
+
 .cardbox .card .numbers {
   position: relative;
-  font-size: 2em;
+  font-size: 1rem;
   font-weight: 500;
 }
 .cardbox .card .cardName {
-  color: dodgerblue;
+  color: rgb(0, 42, 83);
 }
 .cardbox .card .iconBox {
-  color: rgb(127 118 118);
-  font-size: 35px;
-}
-.cardbox .card .iconBox:hover {
-  font-size: 45px;
+  color: rgb(45, 45, 45);
+  font-size: 40px;
 }
 .details {
   position: relative;
   width: 100%;
-  padding: 20px;
   padding-top: 0;
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   gap: 20px;
 }
 .details .recentOrders {
-  position: relative;
-  min-height: 530px;
-  background-color: #fff;
+  background-color: #dfdfdf;
+  position: absolute;
+  width: 100%;
   padding: 20px;
-  border-radius: 10px;
+  overflow-x: scroll;
 }
 
 .cartHedder {
@@ -289,4 +314,16 @@ body {
 }
 .yellow {
   color: rgb(255, 217, 0);
+}
+
+@media screen and (max-width: 1300px) {
+  .cardbox {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 880px) {
+  .cardbox {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
