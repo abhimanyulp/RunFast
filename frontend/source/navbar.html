@@ -36,7 +36,10 @@
             <span class="navbar-toggler-icon"></span>
           </button>
         </div>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div
+          class="collapse navbar-collapse overflow"
+          id="navbarSupportedContent"
+        >
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="/index.html"
@@ -60,7 +63,7 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="/source/cart.html">Cart</a>
+              <a class="nav-link active" href="#">Cart</a>
             </li>
             <li class="nav-item dropdown">
               <a
@@ -78,7 +81,7 @@
                 <li><a class="dropdown-item" href="#">Whislist</a></li>
                 <li><hr class="dropdown-divider" /></li>
                 <li>
-                  <a class="dropdown-item" href="#">Logout</a>
+                  <a class="dropdown-item" href="#" id="logout-btn">Logout</a>
                 </li>
               </ul>
             </li>
@@ -103,10 +106,11 @@
       crossorigin="anonymous"
     ></script>
     <script>
+      let logoutbtn = document.getElementById("logout-btn");
       let signinbtn = document.getElementById("signinbtn");
       let profilebtn = document.getElementById("profilebtn");
 
-      window.onload = () => {
+      window.onload = async () => {
         let cookies = document.cookie.split(";");
         let token = null;
 
@@ -121,13 +125,43 @@
         if (token) {
           signinbtn.classList.remove("active");
           signinbtn.classList.add("d-none");
-
           profilebtn.classList.remove("d-none");
-          // profilebtn.classList.add("d-none");
         } else {
-          //alert("tata");
+          signinbtn.classList.remove("d-none");
+          signinbtn.classList.add("active");
+          profilebtn.classList.add("d-none");
         }
       };
+
+      logoutbtn.addEventListener("click", async () => {
+        let cookies = document.cookie.split(";");
+        let token = null;
+
+        for (let cookie of cookies) {
+          let [name, value] = cookie.trim().split("=");
+          if (name === "token") {
+            token = value;
+            break;
+          }
+        }
+
+        if (token) {
+          let res = await fetch(`http://localhost:8080/user/logout/${token}`);
+          if (res.ok) {
+            const cookieValue = document.cookie
+              .split("; ")
+              .find((row) => row.startsWith("token="))
+              ?.split("=")[1];
+            if (cookieValue !== undefined) {
+              document.cookie =
+                "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            }
+            alert("Logged out");
+          } else {
+            alert("Error logging out");
+          }
+        }
+      });
     </script>
   </body>
 </html>

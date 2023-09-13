@@ -1,6 +1,6 @@
 //Server Urls
-// const baseServerURL = "http://localhost:8080"
-const baseServerURL = "https://runfast.onrender.com"
+const baseServerURL = "http://localhost:8080"
+// const baseServerURL = "https://runfast.onrender.com"
 
 const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
@@ -46,7 +46,7 @@ signupForm.addEventListener('submit', (e) => {
         .catch((err) => console.log(err))
 })
 
-signinForm.addEventListener('submit', (e) => {
+signinForm.addEventListener('submit', async (e) => {
     e.preventDefault()
 
     let payload = {
@@ -54,21 +54,31 @@ signinForm.addEventListener('submit', (e) => {
         password: signinPass.value
     }
 
-    fetch(`${baseServerURL}/user/login`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload),
-    }).then((res) => res.json()).
-        then((data) => {
-            console.log(data)
+    try {
+        let res = await fetch(`${baseServerURL}/user/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload),
+        })
+        console.log(res)
+        if (res.ok) {
+            const data = await res.json();
             alert(data.msg)
             var currentDate = new Date();
             var expiryDate = new Date(currentDate.getTime() + (24 * 60 * 60 * 1000));
             var expiryDateString = expiryDate.toUTCString();
             document.cookie = `token=${data.token}; expires=${expiryDateString}; path=/`;
             window.location.href = '../index.html'
-        }).
-        catch((err) => console.log(err))
+        } else {
+            if (res.status === 404) {
+                return alert("No user found with given email")
+            } else if (res.status === 400) {
+                return alert(`Password is incorrect`)
+            }
+        }
+    } catch (error) {
+        console.log(error)
+    }
 })
