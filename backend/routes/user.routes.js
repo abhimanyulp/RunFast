@@ -4,7 +4,8 @@ const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 
 const userRouter = express.Router()
-const { userModel, BlacklistModel } = require("../models/user.model")
+const { userModel } = require("../models/user.model")
+const { BlacklistModel } = require("../models/blacklist.model")
 
 
 userRouter.post("/login", async (req, res) => {
@@ -27,7 +28,7 @@ userRouter.post("/login", async (req, res) => {
 
 
         } else {
-            res.status(400).send({ "msg": "No user found with given email" })
+            res.status(404).send({ "msg": "No user found with given email" })
         }
 
     } catch (error) {
@@ -58,7 +59,7 @@ userRouter.post("/register", async (req, res) => {
     }
 })
 
-userRouter.post("/logout/:token", async (req, res) => {
+userRouter.get("/logout/:token", async (req, res) => {
     const token = req.params.token;
     try {
         let newBlacklistToken = new BlacklistModel({ token: token });
