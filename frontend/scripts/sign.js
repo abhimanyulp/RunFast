@@ -1,6 +1,6 @@
 //Server Urls
-const baseServerURL = "http://localhost:8080"
-// const baseServerURL = "https://runfast.onrender.com"
+// const baseServerURL = "http://localhost:8080"
+const baseServerURL = "https://runfast.onrender.com"
 
 const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
