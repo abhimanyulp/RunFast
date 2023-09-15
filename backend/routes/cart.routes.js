@@ -10,8 +10,6 @@ cartRouter.post('/add', async (req, res) => {
         const productId = req.body.productId;
         const quantity = req.body.quantity;
 
-        console.log(typeof (userId), typeof (productId));
-
 
         // Check if the product is already in the user's cart
         const isProductInCart = await userModel.aggregate([
@@ -63,6 +61,7 @@ cartRouter.get("/get", async (req, res) => {
             return res.status(404).json({ error: 'Cart not found' });
         }
 
+
         res.status(200).json(user.mycart);
     } catch (error) {
         console.error(error);
@@ -75,14 +74,14 @@ cartRouter.get("/get", async (req, res) => {
 // Route for deleting a product from the user's cart or clearing the entire cart
 cartRouter.delete("/delete/:id", async (req, res) => {
     let id = req.params.id;
-    const userId = req.body.userID;
+    const userId = req.body.userId;
 
     if (id) {
         try {
             // Remove a specific product from the user's cart
             const user = await userModel.findByIdAndUpdate(
                 userId,
-                { $pull: { mycart: { product: productId } } },
+                { $pull: { mycart: { product: id } } },
                 { new: true }
             ).exec();
 
@@ -92,7 +91,7 @@ cartRouter.delete("/delete/:id", async (req, res) => {
                 return res.status(404).send({ "msg": "No such item" });
             }
         } catch (error) {
-            return res.status(500).send({ "msg": "Internal server error" });
+            return res.status(500).send({ "msg": error.message });
         }
     } else {
         try {

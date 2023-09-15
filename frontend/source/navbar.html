@@ -1,177 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>RunFast</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
-      crossorigin="anonymous"
-    />
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <div class="d-flex w-100 justify-content-between">
-          <a class="navbar-brand w-50 align-text-bottom" href="/index.html"
-            ><span
-              ><img
-                src="https://cdn-icons-png.flaticon.com/512/9749/9749384.png"
-                alt="RunFast"
-                class="mx-1"
-                style="width: 45px" /></span
-            >RunFast</a
-          >
-          <button
-            class="navbar-toggler w-25"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
-        <div
-          class="collapse navbar-collapse overflow"
-          id="navbarSupportedContent"
-        >
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/index.html"
-                >Home</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link active"
-                aria-current="page"
-                href="/source/products.html"
-                >Products</a
-              >
-            </li>
-            <li class="nav-item" id="signinbtn">
-              <a
-                class="nav-link active"
-                aria-current="page"
-                href="/source/sign.html"
-                >Login</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link d-none" href="/source/cart.html" id="cart-btn"
-                >Cart</a
-              >
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle d-none"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                id="profilebtn"
-              >
-                Profile
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Orders</a></li>
-                <li><a class="dropdown-item" href="#">Whislist</a></li>
-                <li><hr class="dropdown-divider" /></li>
-                <li>
-                  <a class="dropdown-item" href="#" id="logout-btn">Logout</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-          <form class="d-flex" role="search">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-primary" type="submit">
-              Search
-            </button>
-          </form>
-        </div>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RunFast</title>
+  <link href="../styles/notyf.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <div class="d-flex w-100 justify-content-between">
+        <a class="navbar-brand w-50 align-text-bottom" href="/index.html"><span><img
+              src="https://cdn-icons-png.flaticon.com/512/9749/9749384.png" alt="RunFast" class="mx-1"
+              style="width: 45px" /></span>RunFast</a>
+        <button class="navbar-toggler w-25" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
       </div>
-    </nav>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-      crossorigin="anonymous"
-    ></script>
-    <script>
-      // const baseServerURL = "http://localhost:8080"
-      const baseServerURL = "https://runfast.onrender.com";
-      let logoutbtn = document.getElementById("logout-btn");
-      let signinbtn = document.getElementById("signinbtn");
-      let profilebtn = document.getElementById("profilebtn");
-      let cartbtn = document.getElementById("cart-btn");
+      <div class="collapse navbar-collapse overflow" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/source/products.html">Products</a>
+          </li>
+          <li class="nav-item" id="signinbtn">
+            <a class="nav-link active" aria-current="page" href="/source/sign.html">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-none" href="/source/cart.html" id="cart-btn">Cart</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle d-none" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false" id="profilebtn">
+              Profile
+            </a>
+            <ul class="dropdown-menu">
+              <!-- <li><a class="dropdown-item" href="#">Orders</a></li>
+              <li><a class="dropdown-item" href="#">Whislist</a></li> -->
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <li>
+                <a class="dropdown-item" href="#" id="logout-btn">Logout</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <!-- <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+          <button class="btn btn-outline-primary" type="submit">
+            Search
+          </button>
+        </form> -->
+      </div>
+    </div>
+  </nav>
+  <!-- Notyf Script -->
+  <script src="../scripts/notyf.min.js" type="application/javascript"></script>
+  <script type="application/javascript">
+    var notyf = new Notyf({
+      duration: 5000 // Set your global Notyf configuration here
+    });
+  </script>
+  <!-- Notyf Script -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
+  <script>
+    // const baseServerURL = "http://localhost:8080"
+    const baseServerURL = "https://runfast.onrender.com";
+    let logoutbtn = document.getElementById("logout-btn");
+    let signinbtn = document.getElementById("signinbtn");
+    let profilebtn = document.getElementById("profilebtn");
+    let cartbtn = document.getElementById("cart-btn");
 
-      window.onload = async () => {
-        let cookies = document.cookie.split(";");
-        let token = null;
+    window.onload = async () => {
+      let cookies = document.cookie.split(";");
+      let token = null;
 
-        for (let cookie of cookies) {
-          let [name, value] = cookie.trim().split("=");
-          if (name === "token") {
-            token = value;
-            break;
-          }
+      for (let cookie of cookies) {
+        let [name, value] = cookie.trim().split("=");
+        if (name === "token") {
+          token = value;
+          break;
         }
+      }
 
-        if (token) {
-          signinbtn.classList.remove("active");
-          signinbtn.classList.add("d-none");
-          profilebtn.classList.remove("d-none");
-          cartbtn.classList.remove("d-none");
-          cartbtn.classList.add("active");
+      if (token) {
+        signinbtn.classList.remove("active");
+        signinbtn.classList.add("d-none");
+        profilebtn.classList.remove("d-none");
+        cartbtn.classList.remove("d-none");
+        cartbtn.classList.add("active");
+      } else {
+        signinbtn.classList.remove("d-none");
+        signinbtn.classList.add("active");
+        profilebtn.classList.add("d-none");
+        cartbtn.classList.remove("active");
+        cartbtn.classList.add("d-none");
+      }
+    };
+
+    logoutbtn.addEventListener("click", async () => {
+      let cookies = document.cookie.split(";");
+      let token = null;
+
+      for (let cookie of cookies) {
+        let [name, value] = cookie.trim().split("=");
+        if (name === "token") {
+          token = value;
+          break;
+        }
+      }
+
+      if (token) {
+        let res = await fetch(`${baseServerURL}/user/logout/${token}`);
+        if (res.ok) {
+          const cookieValue = document.cookie
+            .split("; ")
+            .find((row) => row.startsWith("token="))
+            ?.split("=")[1];
+          if (cookieValue !== undefined) {
+            document.cookie =
+              "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+          }
+          notyf.success('Logged out');
+          setTimeout(() => {
+            window.location.href = '../index.html';
+          }, 2000)
+
         } else {
-          signinbtn.classList.remove("d-none");
-          signinbtn.classList.add("active");
-          profilebtn.classList.add("d-none");
-          cartbtn.classList.remove("active");
-          cartbtn.classList.add("d-none");
+          notyf.error("Error logging out");
         }
-      };
+      }
+    });
+  </script>
+</body>
 
-      logoutbtn.addEventListener("click", async () => {
-        let cookies = document.cookie.split(";");
-        let token = null;
-
-        for (let cookie of cookies) {
-          let [name, value] = cookie.trim().split("=");
-          if (name === "token") {
-            token = value;
-            break;
-          }
-        }
-
-        if (token) {
-          let res = await fetch(`${baseServerURL}/user/logout/${token}`);
-          if (res.ok) {
-            const cookieValue = document.cookie
-              .split("; ")
-              .find((row) => row.startsWith("token="))
-              ?.split("=")[1];
-            if (cookieValue !== undefined) {
-              document.cookie =
-                "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            }
-            alert("Logged out");
-            window.location.reload();
-          } else {
-            alert("Error logging out");
-          }
-        }
-      });
-    </script>
-  </body>
 </html>

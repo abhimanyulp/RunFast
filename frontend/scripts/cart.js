@@ -25,7 +25,7 @@ let isCartEmpty = true
 
 //Fetching and Display User Cart
 let init = () => {
-    fetch(`${baseServerURL}/cart`, {
+    fetch(`${baseServerURL}/cart/get`, {
         method: "GET",
         headers: {
             'Content-Type': 'application/json',
@@ -63,13 +63,14 @@ couponSel.addEventListener("change", () => {
         total = total - ((total / 100) * 10)
         totalEl.innerText = `$${total}`;
         flag = false
+        notyf.success('10% Coupon is Applied!');
     }
 })
 
 //Temperoly saving order data to local stroage
 checkoutbtn.addEventListener("click", () => {
     if(isCartEmpty){
-        alert("Please Add Some Item To Checkout!")
+        notyf.error("Please Add Some Item To Checkout!");
     }else{
         window.location.href = "./checkout.html"
     }
@@ -109,22 +110,22 @@ function Display(data) {
         card_box.setAttribute("id", "card-box");
 
         let img = document.createElement("img")
-        img.src = element.image;
+        img.src = element.product.image;
 
         let details = document.createElement("div");
         details.setAttribute("id", "details")
 
         let title = document.createElement("p")
-        title.innerText = element.name;
+        title.innerText = element.product.name;
 
         let color = document.createElement("p")
-        color.innerText = element.color;
+        color.innerText = element.product.color;
 
         let price = document.createElement("p")
-        price.innerText = `$${element.price}`;
+        price.innerText = `$${element.product.price}`;
 
-        total += element.price;
-        subtotal += element.price;
+        total += element.product.price;
+        subtotal += element.product.price;
         totalEl.innerText = `$${total}`;
         subtotalEl.innerText = `$${subtotal}`;
 
@@ -144,28 +145,30 @@ function Display(data) {
         btm_dec.addEventListener("click", () => {
 
             if (value.innerText > 1) {
-                total -= element.price;
+                total -= element.product.price;
                 totalEl.innerText = `$${total}`;
 
-                subtotal -= element.price;
+                subtotal -= element.product.price;
                 subtotalEl.innerText = `$${subtotal}`;
 
                 value.innerText--
+                cartUpdate(element.product._id, value.innerText)
             }
         })
 
         btm_inc.addEventListener("click", () => {
 
-            total += element.price;
+            total += element.product.price;
             totalEl.innerText = `$${total}`;
 
-            subtotal += element.price;
+            subtotal += element.product.price;
             subtotalEl.innerText = `$${subtotal}`;
 
             value.innerText++
+            cartUpdate(element.product._id, value.innerText)
         })
 
-        let id = element.id;
+        let id = element.product._id;
 
         let remove = document.createElement("button");
         remove.innerText = "x"
@@ -175,15 +178,11 @@ function Display(data) {
 
             cartDelete(id)
 
-            total = 0;
-            subtotal = 0;
-
-            init()
-
             setTimeout(() => {
                 window.location.reload()
             }, 2000)
 
+            notyf.success('Item Deleted!');
         })
 
         card.append(card_box, price, quantity, remove);
@@ -197,14 +196,40 @@ function Display(data) {
 
 //Cart Item Delete Funtion
 function cartDelete(productId) {
-    let url = `${baseServerURL}/cart`;
+    let url = `${baseServerURL}/cart/delete/${productId}`;
     fetch((url), {
         method: "DELETE",
         headers: {
             'Content-Type': 'application/json',
             'authorization': token
+        }
+    })
+        .then((res) => {
+            return res.json();
+        })
+        .then((data) => {
+            console.log(data);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+
+}
+
+//Cart Item Quantity Update Funtion
+function cartUpdate(productId, qty) {
+    let url = `${baseServerURL}/cart/update`;
+    let payload = {
+        productId,
+        qty
+    }
+    fetch((url), {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json',
+            'authorization': token
         },
-        body: JSON.stringify({ productId })
+        body: JSON.stringify(payload)
     })
         .then((res) => {
             return res.json();

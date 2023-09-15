@@ -66,20 +66,27 @@ function display(data) {
     let buttonElement = document.getElementsByClassName("btnCart");
     for (let i = 0; i < buttonElement.length; ++i) {
         buttonElement[i].addEventListener('click', event => {
-            let id = event.target.id;
-            changeInServer(id)
-            let button = document.getElementById(id);
-            button.disabled = true;
-            button.setAttribute('class', 'alreadyAddedButton');
-            button.innerText = 'Product Added To Cart'
+            if (token) {
+                let id = event.target.id;
+                changeInServer(id)
+                let button = document.getElementById(id);
+                button.disabled = true;
+                button.setAttribute('class', 'alreadyAddedButton');
+                button.innerText = 'Product Added To Cart'
+            } else {
+                notyf.error('Please Login First!');
+            }
+
         })
     }
-    disableAllCartButton();
+    if (token) {
+        disableAllCartButton();
+    }
 }
 
 function disableAllCartButton() {
 
-    fetch(`${baseServerURL}/cart`, {
+    fetch(`${baseServerURL}/cart/get`, {
         method: "GET",
         headers: {
             'Content-Type': 'application/json',
@@ -89,8 +96,9 @@ function disableAllCartButton() {
         .then((res) => res.json())
         .then((data) => {
             let cart = data
+            console.log(cart)
             for (let i = 0; i < cart.length; i++) {
-                let id = cart[i]._id;
+                let id = cart[i].product._id;
                 let button = document.getElementById(id);
                 button.disabled = true;
                 button.innerText = 'Product Added To Cart'
@@ -100,18 +108,19 @@ function disableAllCartButton() {
         .catch((err) => {
             console.log(err)
         })
-    
+
 }
 
 function changeInServer(productId) {
-    let url = `${baseServerURL}/cart`;
+    let url = `${baseServerURL}/cart/add`;
+    let payload = { productId, quantity: 1 }
     fetch((url), {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
             'authorization': token
         },
-        body: JSON.stringify({ productId })
+        body: JSON.stringify(payload)
     })
         .then((res) => {
             return res.json();
@@ -260,7 +269,7 @@ function getFilteredData(url, filter, value) {
         .then((data) => {
             mainData = data.data;
             if (mainData.length == 0) {
-                alert("The price for which you are searching is not available,please Enter other amount")
+                notyf.error("The price for which you are searching is not available,please Enter other amount")
                 let url = `${baseServerURL}/product/data`;
                 fetchShoes(url);
             } else {
@@ -281,7 +290,7 @@ btnBrand.addEventListener("click", (event) => {
     event.preventDefault()
     let value = document.getElementById("inputBrand").value;
     if (value == '' || value == undefined) {
-        alert('Please enter the brand');
+        notyf.error('Please enter the brand')
         return;
     }
     let url = `${baseServerURL}/product/data?_limit=12&_page=1&brand=${value}`;
@@ -303,7 +312,7 @@ let btnRating = document.getElementById("btnRating");
 btnRating.addEventListener("click", (event) => {
     let value = document.getElementById("ratingValue").value;
     if (value == '' || value == undefined || value > 5) {
-        alert("Please Enter The Rating value Greater Than Equal To 1 And Less Than Equal To 5")
+        notyf.error("Please Enter The Rating value Greater Than Equal To 1 And Less Than Equal To 5")
         return;
     }
     let url = `${baseServerURL}/product/data?_limit=12&_page=1&rating=${value}`;
