@@ -13,7 +13,7 @@ let totalFinal = document.querySelector("#total-final > h1");
 
 //Fetching and Display User Cart
 let init = () => {
-  fetch(`${baseServerURL}/cart`, {
+  fetch(`${baseServerURL}/cart/get`, {
     method: "GET",
     headers: {
       'Content-Type': 'application/json',
@@ -55,7 +55,7 @@ function OrderPlacedBackend() {
 
   let CurrentCart = null
 
-  fetch(`${baseServerURL}/cart`, {
+  fetch(`${baseServerURL}/cart/get`, {
     method: "GET",
     headers: {
       'Content-Type': 'application/json',
@@ -70,9 +70,9 @@ function OrderPlacedBackend() {
       console.log(err)
     })
 
-  if (CurrentCart !== null) {
+  if (CurrentCart != null) {
     //Need to make changes according to the backend route
-    fetch(`${baseServerURL}/order`, {
+    fetch(`${baseServerURL}/cart/order`, {
       method: "POST",
       body: JSON.stringify(CurrentCart),
       headers: {
@@ -97,19 +97,22 @@ function Display(data) {
     card.setAttribute("id", "card")
 
     let img = document.createElement("img")
-    img.setAttribute("src", element.image);
+    img.setAttribute("src", element.product.image);
 
     let titleCard = document.createElement("div")
     titleCard.setAttribute("id", "title-card")
 
     let title = document.createElement("p")
-    title.innerText = element.name;
+    title.innerText = element.product.name;
+
+    let qty = document.createElement("p")
+    qty.innerText = element.quantity;
 
     let color = document.createElement("p")
-    color.innerText = element.color;
+    color.innerText = element.product.color;
 
 
-    card.append(img, titleCard, color)
+    card.append(img, titleCard, qty, color)
     titleCard.append(title);
     productsEl.append(card);
   })

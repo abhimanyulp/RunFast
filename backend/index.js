@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
 
 app.use("/user", userRouter)
 app.use("/product", productRouter)
-app.use("/cart", cartRouter)
+app.use("/cart", auth, cartRouter)
 app.use("/order", auth, orderRouter)
 
 const Port = process.env.Port || 8080

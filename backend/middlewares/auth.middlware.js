@@ -13,7 +13,7 @@ const auth = async (req, res, next) => {
             const decoded = jwt.verify(token, process.env.PrivateKey)
             if (decoded) {
                 // console.log("auth working!")
-                req.body.userID = decoded.userID
+                req.body.userId = decoded.userID
                 next();
 
             } else {

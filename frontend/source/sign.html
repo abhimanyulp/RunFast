@@ -1,48 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SignIn/SignUp</title>
-    <link rel="stylesheet" href="../styles/sign.css" />
-  </head>
-  <body>
-    <div class="container" id="container">
-      <div class="form-container sign-up-container">
-        <form action="#" id="signupForm">
-          <h1>Create Account</h1>
-          <span>or use your email for registration</span>
-          <input type="text" placeholder="Name" id="signupName" />
-          <input type="email" placeholder="Email" id="signupEmail" />
-          <input type="password" placeholder="Password" id="signupPass" />
-          <button>Sign Up</button>
-        </form>
-      </div>
-      <div class="form-container sign-in-container">
-        <form action="#" id="signinForm">
-          <h1>Sign in</h1>
-          <span>or use your account</span>
-          <input type="email" placeholder="Email" id="signinEmail" />
-          <input type="password" placeholder="Password" id="signinPass" />
-          <a href="#">Forgot your password?</a>
-          <button>Sign In</button>
-        </form>
-      </div>
-      <div class="overlay-container">
-        <div class="overlay">
-          <div class="overlay-panel overlay-left">
-            <h1>Welcome Back!</h1>
-            <p>To keep shoping with us please login with your personal info</p>
-            <button class="ghost" id="signIn">Sign In</button>
-          </div>
-          <div class="overlay-panel overlay-right">
-            <h1>Hello, Friend!</h1>
-            <p>Enter your personal details and start shoping with us</p>
-            <button class="ghost" id="signUp">Sign Up</button>
-          </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SignIn/SignUp</title>
+  <link href="../styles/notyf.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/sign.css" />
+</head>
+
+<body>
+  <div class="container" id="container">
+    <div class="form-container sign-up-container">
+      <form action="#" id="signupForm">
+        <h1>Create Account</h1>
+        <span>or use your email for registration</span>
+        <input type="text" placeholder="Name" id="signupName" />
+        <input type="email" placeholder="Email" id="signupEmail" />
+        <input type="password" placeholder="Password" id="signupPass" />
+        <button>Sign Up</button>
+      </form>
+    </div>
+    <div class="form-container sign-in-container">
+      <form action="#" id="signinForm">
+        <h1>Sign in</h1>
+        <span>or use your account</span>
+        <input type="email" placeholder="Email" id="signinEmail" />
+        <input type="password" placeholder="Password" id="signinPass" />
+        <a href="#">Forgot your password?</a>
+        <button>Sign In</button>
+      </form>
+    </div>
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+          <h1>Welcome Back!</h1>
+          <p>To keep shoping with us please login with your personal info</p>
+          <button class="ghost" id="signIn">Sign In</button>
+        </div>
+        <div class="overlay-panel overlay-right">
+          <h1>Hello, Friend!</h1>
+          <p>Enter your personal details and start shoping with us</p>
+          <button class="ghost" id="signUp">Sign Up</button>
         </div>
       </div>
     </div>
-  </body>
-  <script src="../scripts/sign.js"></script>
+  </div>
+</body>
+<!-- Notyf Script -->
+<script src="../scripts/notyf.min.js" type="application/javascript"></script>
+<script type="application/javascript">
+  var notyf = new Notyf({
+    duration: 5000 // Set your global Notyf configuration here
+  });
+</script>
+<!-- Notyf Script -->
+<script src="../scripts/sign.js"></script>
+
 </html>

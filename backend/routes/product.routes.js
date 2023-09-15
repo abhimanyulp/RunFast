@@ -71,8 +71,6 @@ productRouter.get("/data", async (req, res) => {
         const totalItems = await productModel.countDocuments(filters);
         const totalPages = Math.ceil(totalItems / limit);
 
-        console.log("someone was there!", "page:", page, "limit:", limit, "sortField:", sortField, "sortOrder:", sortOrder, "maxPrice:", maxPrice, "totalItems:", totalItems)
-
         res.json({
             data,
             totalPages,

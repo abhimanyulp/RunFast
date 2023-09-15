@@ -41,7 +41,8 @@ signupForm.addEventListener('submit', (e) => {
     }).then((res) => res.json())
         .then((data) => {
             console.log(data)
-            alert(data.msg)
+            notyf.success('Sign Up Success!');
+            
         })
         .catch((err) => console.log(err))
 })
@@ -65,17 +66,20 @@ signinForm.addEventListener('submit', async (e) => {
         console.log(res)
         if (res.ok) {
             const data = await res.json();
-            alert(data.msg)
+            notyf.success('Sign In Success!');
             var currentDate = new Date();
             var expiryDate = new Date(currentDate.getTime() + (24 * 60 * 60 * 1000));
             var expiryDateString = expiryDate.toUTCString();
             document.cookie = `token=${data.token}; expires=${expiryDateString}; path=/`;
-            window.location.href = '../index.html'
+            setTimeout(()=>{
+                window.location.href = '../index.html'
+            },2000)
+            
         } else {
             if (res.status === 404) {
-                return alert("No user found with given email")
+                return notyf.error('No user found with given email');
             } else if (res.status === 400) {
-                return alert(`Password is incorrect`)
+                return notyf.error('Password is incorrect');
             }
         }
     } catch (error) {

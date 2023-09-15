@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart</title>
     <link rel="stylesheet" href="/styles/cart.css">
+    <link href="../styles/notyf.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 
@@ -45,7 +46,7 @@
                 <p id="total">0</p>
             </div>
             <button id="checkout-btn">
-                <a href="./checkout.html" id="checkout">Checkout</a>
+                <a id="checkout">Checkout</a>
             </button>
 
         </div>
@@ -63,6 +64,14 @@
         $("#footer").load("footer.html");
     });
 </script>
+<!-- Notyf Script -->
+<script src="../scripts/notyf.min.js" type="application/javascript"></script>
+<script type="application/javascript">
+    var notyf = new Notyf({
+        duration: 5000 // Set your global Notyf configuration here
+    });
+</script>
+<!-- Notyf Script -->
 <script src="../scripts/cart.js"></script>
 
 </html>

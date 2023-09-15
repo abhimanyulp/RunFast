@@ -11,6 +11,10 @@
     align-items: center;
     margin: auto;
 }
+#loading > img {
+    width: 40%;
+}
+
 
 #mainDiv {
     width: 90%;
