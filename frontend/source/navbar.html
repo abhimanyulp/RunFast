@@ -63,7 +63,9 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#">Cart</a>
+              <a class="nav-link d-none" href="/source/cart.html" id="cart-btn"
+                >Cart</a
+              >
             </li>
             <li class="nav-item dropdown">
               <a
@@ -111,6 +113,7 @@
       let logoutbtn = document.getElementById("logout-btn");
       let signinbtn = document.getElementById("signinbtn");
       let profilebtn = document.getElementById("profilebtn");
+      let cartbtn = document.getElementById("cart-btn");
 
       window.onload = async () => {
         let cookies = document.cookie.split(";");
@@ -128,10 +131,14 @@
           signinbtn.classList.remove("active");
           signinbtn.classList.add("d-none");
           profilebtn.classList.remove("d-none");
+          cartbtn.classList.remove("d-none");
+          cartbtn.classList.add("active");
         } else {
           signinbtn.classList.remove("d-none");
           signinbtn.classList.add("active");
           profilebtn.classList.add("d-none");
+          cartbtn.classList.remove("active");
+          cartbtn.classList.add("d-none");
         }
       };
 
@@ -159,6 +166,7 @@
                 "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
             }
             alert("Logged out");
+            window.location.reload();
           } else {
             alert("Error logging out");
           }
