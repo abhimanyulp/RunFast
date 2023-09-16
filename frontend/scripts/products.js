@@ -18,8 +18,8 @@ window.addEventListener("load", (event) => {
 });
 
 mainSection.innerHTML = `
-<div id="loading">
-    <img src="https://i.gifer.com/XVo6.gif">
+<div style="height: 70vh;" id="loading">
+    <img src="https://i.gifer.com/ZKZg.gif">
 </div>
 `
 
